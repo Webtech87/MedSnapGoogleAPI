@@ -1,6 +1,6 @@
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
-import aiva from '../assets/AI-chat-avatar.gif'
+import aiva from '../assets/AI-chat-avatar.png'
 import chat from '../assets/AI-chat-message-div.jpg'
 import face from "../assets/face.jpg"
 
@@ -20,7 +20,8 @@ const ComingSoon = () => {
                 </div>
             </div>
             <div className={styles.aiva}>
-                <img src={chat} alt="" />
+                <img src={chat} alt="" className={styles.chat} />
+                <img src={aiva} alt="" className={styles.aiva_img}/>
             </div>       
         </div>
         <div className={styles.bg}>

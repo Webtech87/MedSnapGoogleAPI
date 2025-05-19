@@ -43,7 +43,7 @@
     margin-bottom: 30px;
 }
 
-.aiva img {
+.chat {
     width: 400px;
 }
 
@@ -78,4 +78,22 @@
     font-size: 14px;
     left: -3%;
     max-width: 30%;
+}
+
+.aiva {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.aiva_img {
+    width: 200px;
+    position: absolute;
+    right: 20%;
+    bottom: 8%;
+}
+
+.chat {
+    position: absolute;
+    left: -5%;
 }
