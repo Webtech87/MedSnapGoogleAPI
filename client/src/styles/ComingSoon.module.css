@@ -97,3 +97,18 @@
     position: absolute;
     left: -5%;
 }
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 150px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+.links a {
+    text-decoration: none;
+    margin-right: 70px;
+    color: black;
+}

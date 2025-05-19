@@ -24,6 +24,16 @@ const ComingSoon = () => {
                 <img src={aiva} alt="" className={styles.aiva_img}/>
             </div>       
         </div>
+        <div className={styles.footer}>
+          <div className={styles.copyright}>
+            <p>© 2025 Medsnap. All rights reserved.</p>
+          </div>
+          <div className={styles.links}>
+            <a href="">Terms of Use</a>
+            <a href="">Privacy Policy</a>
+            <a href="">Cookies Policy</a>
+          </div>
+        </div>
         <div className={styles.bg}>
             <img src={bg_img} alt="" />
         </div>
