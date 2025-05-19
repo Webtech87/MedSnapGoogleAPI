@@ -1,5 +1,8 @@
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
+import aiva from '../assets/AI-chat-avatar.gif'
+import chat from '../assets/AI-chat-message-div.jpg'
+import face from "../assets/face.jpg"
 
 const ComingSoon = () => {
   return (
@@ -8,6 +11,16 @@ const ComingSoon = () => {
             <div className={styles.header_container}>
                 <h1 className={styles.header}>MedSnap is Coming Soon...</h1>
                 <p className={styles.description}>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
+                <button className={styles.join_button}>Join the Waitlist</button>
+                <div className={styles.faces}>
+                  <img src={face} alt="Face" className={styles.img1}/>
+                  <img src={face} alt="Face" className={styles.img2}/>
+                  <img src={face} alt="Face" className={styles.img3}/>
+                  <p className={styles.join_text}>Join our waitlist and get early access + exclusive perks.</p>
+                </div>
+            </div>
+            <div className={styles.aiva}>
+                <img src={chat} alt="" />
             </div>       
         </div>
         <div className={styles.bg}>

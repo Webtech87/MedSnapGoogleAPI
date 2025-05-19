@@ -11,7 +11,7 @@ const Navbar = () => {
             </Link>
         </span>
       
-        <button className={styles.join_button}>Join the wishlist</button>
+        <button className={styles.join_button}>Join the Waitlist</button>
     </nav>
   )
 }
