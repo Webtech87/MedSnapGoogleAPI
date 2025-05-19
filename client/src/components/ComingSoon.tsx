@@ -5,9 +5,9 @@ const ComingSoon = () => {
   return (
     <div>
         <div className={styles.home}>
-            <div>
-                <h1>MedSnap is Coming Soon...</h1>
-                <p>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
+            <div className={styles.header_container}>
+                <h1 className={styles.header}>MedSnap is Coming Soon...</h1>
+                <p className={styles.description}>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
             </div>       
         </div>
         <div className={styles.bg}>
