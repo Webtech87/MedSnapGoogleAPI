@@ -41,6 +41,11 @@
     border: none;
     color: #fff;
     margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.join_button:hover {
+    box-shadow: 0 0 10px rgba(138, 129, 255, 0.7);
 }
 
 .chat {
@@ -111,4 +116,8 @@
     text-decoration: none;
     margin-right: 70px;
     color: black;
+}
+
+.links a:hover {
+    text-decoration: underline;
 }

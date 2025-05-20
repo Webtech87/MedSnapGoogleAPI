@@ -17,4 +17,9 @@
     background-color: #5856D6;
     border: none;
     color: #fff;
+    cursor: pointer;
+}
+
+.join_button:hover {
+    box-shadow: 0 0 10px rgba(138, 129, 255, 0.7);
 }
