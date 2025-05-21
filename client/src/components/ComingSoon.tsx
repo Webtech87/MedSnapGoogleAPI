@@ -1,6 +1,5 @@
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
-import aiva from '../assets/AI-chat-avatar.png'
 import chat_desktop from '../assets/AI-chat-message-div.jpg'
 import chat_mobile from '../assets/ai-chat-mobile.jpg'
 import face from "../assets/face.jpg"
