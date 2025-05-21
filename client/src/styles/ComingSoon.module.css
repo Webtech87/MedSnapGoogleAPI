@@ -251,3 +251,29 @@
         text-align: center;
     }
 }
+
+@media (min-width: 1500px) {
+    .home {
+        padding-top: 100px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 20px 0px;
+    }
+
+    .chat_desktop {
+        width: 500px;
+        left: 0;
+        top: -10%;
+    }
+
+    .aiva_desktop {
+        width: 230px;
+        position: absolute;
+        right: 20%;
+        bottom: -10%;
+    }
+}
