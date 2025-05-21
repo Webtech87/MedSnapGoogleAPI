@@ -4,6 +4,11 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.header_container {
+    display: flex;
+    flex-direction: column;
+}
+
 .bg {
     position: relative;
     height: 100vh;
@@ -45,11 +50,8 @@
 }
 
 .join_button:hover {
-    box-shadow: 0 0 10px rgba(138, 129, 255, 0.7);
-}
-
-.chat {
-    width: 400px;
+    background-color: #403eaa;
+    box-shadow: 0 0 10px rgba(138, 129, 255, 0.9);
 }
 
 .faces {
@@ -91,16 +93,26 @@
     flex-direction: column;
 }
 
-.aiva_img {
+.aiva_desktop {
+    display: block;
     width: 200px;
     position: absolute;
     right: 20%;
     bottom: 8%;
 }
 
-.chat {
+.aiva_mobile {
+    display: none;
+}
+
+.chat_desktop {
     position: absolute;
     left: -5%;
+    width: 400px;
+}
+
+.chat_mobile {
+    display: none;
 }
 
 .footer {

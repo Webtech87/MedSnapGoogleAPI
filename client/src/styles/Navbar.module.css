@@ -21,5 +21,6 @@
 }
 
 .join_button:hover {
-    box-shadow: 0 0 10px rgba(138, 129, 255, 0.7);
+    background-color: #403eaa;
+    box-shadow: 0 0 10px rgba(138, 129, 255, 0.9);
 }

@@ -1,7 +1,8 @@
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
 import aiva from '../assets/AI-chat-avatar.png'
-import chat from '../assets/AI-chat-message-div.jpg'
+import chat_desktop from '../assets/AI-chat-message-div.jpg'
+import chat_mobile from '../assets/ai-chat-mobile.jpg'
 import face from "../assets/face.jpg"
 
 const ComingSoon = () => {
@@ -12,6 +13,7 @@ const ComingSoon = () => {
                 <h1 className={styles.header}>MedSnap is Coming Soon...</h1>
                 <p className={styles.description}>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
                 <button className={styles.join_button}>Join the Waitlist</button>
+                <img src={aiva} alt="Aiva" className={styles.aiva_mobile}/>
                 <div className={styles.faces}>
                   <img src={face} alt="Face" className={styles.img1}/>
                   <img src={face} alt="Face" className={styles.img2}/>
@@ -20,8 +22,9 @@ const ComingSoon = () => {
                 </div>
             </div>
             <div className={styles.aiva}>
-                <img src={chat} alt="" className={styles.chat} />
-                <img src={aiva} alt="" className={styles.aiva_img}/>
+                <img src={chat_desktop} alt="" className={styles.chat_desktop} />
+                <img src={chat_mobile} alt="" className={styles.chat_mobile} />
+                <img src={aiva} alt="Aiva" className={styles.aiva_desktop}/>
             </div>       
         </div>
         <div className={styles.footer}>
