@@ -24,3 +24,9 @@
     background-color: #403eaa;
     box-shadow: 0 0 10px rgba(138, 129, 255, 0.9);
 }
+
+@media (max-width: 767px) {
+    .navbar {
+        padding: 5px 15px;
+    }
+}

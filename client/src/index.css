@@ -11,3 +11,10 @@ body {
   height: 100vh;
   box-sizing: border-box;
 }
+
+@media (max-width: 767px) {
+  html, body {
+    overflow-y: auto; /* allow vertical scrolling */
+    overflow-x: hidden; /* still prevent horizontal scroll */
+  }
+}

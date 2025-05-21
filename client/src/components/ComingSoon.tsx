@@ -7,17 +7,22 @@ import face from "../assets/face.jpg"
 
 const ComingSoon = () => {
   return (
-    <div>
+    <div className={styles.main_container}>
+        <div className={styles.bg}>
+            <img src={bg_img} alt="" />
+        </div>
         <div className={styles.home}>
             <div className={styles.header_container}>
                 <h1 className={styles.header}>MedSnap is Coming Soon...</h1>
                 <p className={styles.description}>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
-                <button className={styles.join_button}>Join the Waitlist</button>
                 <img src={aiva} alt="Aiva" className={styles.aiva_mobile}/>
+                <button className={styles.join_button}>Join the Waitlist</button>
                 <div className={styles.faces}>
-                  <img src={face} alt="Face" className={styles.img1}/>
-                  <img src={face} alt="Face" className={styles.img2}/>
-                  <img src={face} alt="Face" className={styles.img3}/>
+                  <div className={styles.faces_img}>
+                    <img src={face} alt="Face" className={styles.img1}/>
+                    <img src={face} alt="Face" className={styles.img2}/>
+                    <img src={face} alt="Face" className={styles.img3}/>
+                  </div>                  
                   <p className={styles.join_text}>Join our waitlist and get early access + exclusive perks.</p>
                 </div>
             </div>
@@ -37,10 +42,6 @@ const ComingSoon = () => {
             <a href="">Cookies Policy</a>
           </div>
         </div>
-        <div className={styles.bg}>
-            <img src={bg_img} alt="" />
-        </div>
-
     </div>
     
   )
