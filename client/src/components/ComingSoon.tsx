@@ -4,6 +4,8 @@ import aiva from '../assets/AI-chat-avatar.png'
 import chat_desktop from '../assets/AI-chat-message-div.jpg'
 import chat_mobile from '../assets/ai-chat-mobile.jpg'
 import face from "../assets/face.jpg"
+import Lottie from 'lottie-react'
+import animationData from '../assets/animations/medsnap-animation.json'
 
 const ComingSoon = () => {
   return (
@@ -15,7 +17,9 @@ const ComingSoon = () => {
             <div className={styles.header_container}>
                 <h1 className={styles.header}>MedSnap is Coming Soon...</h1>
                 <p className={styles.description}>AI powered clinical diary revolutionizing aesthetic medicine and personalized treatments.</p>
-                <img src={aiva} alt="Aiva" className={styles.aiva_mobile}/>
+                <div className={styles.aiva_mobile}>
+                  <Lottie animationData={animationData} loop={true} />
+                </div>
                 <button className={styles.join_button}>Join the Waitlist</button>
                 <div className={styles.faces}>
                   <div className={styles.faces_img}>
@@ -29,7 +33,9 @@ const ComingSoon = () => {
             <div className={styles.aiva}>
                 <img src={chat_desktop} alt="" className={styles.chat_desktop} />
                 <img src={chat_mobile} alt="" className={styles.chat_mobile} />
-                <img src={aiva} alt="Aiva" className={styles.aiva_desktop}/>
+                <div className={styles.aiva_desktop}>
+                  <Lottie animationData={animationData} loop={true} />
+                </div>
             </div>       
         </div>
         <div className={styles.footer}>
