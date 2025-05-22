@@ -191,4 +191,21 @@
     .pt_button img, .gb_button img {
         display: none;
     }
+
+    .modal_container {
+        width: 80%;
+        height: 75%;
+    }
+
+    .modal_header p {
+        text-align: center;
+    }
+
+    .checkbox input {
+        transform: scale(1);
+    }
+
+    .submit {
+        width: 80%;
+    }
 }
