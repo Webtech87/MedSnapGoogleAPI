@@ -209,3 +209,19 @@
         width: 80%;
     }
 }
+
+@media (min-width: 1900px) {
+    .modal_container {
+        height: 70%;
+        width: 25%;
+    }
+
+    .modal_header {
+        text-align: center;
+        padding: 0 10%;
+    }
+
+    .modal_form {        
+        padding: 0 10%;
+    }
+}
