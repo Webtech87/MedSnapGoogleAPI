@@ -435,3 +435,37 @@
         padding: 0 10%;
     }
 }
+
+@media (max-width: 425px) {
+    .description {
+        padding: 0px 40px;
+    }
+    .join_button {
+        font-size: 14px;
+    }
+
+    .logo img {
+        width: 110px;
+    }
+
+    .join_button {
+        width: 130px;
+        height: 32px;
+    }
+
+    .modal_container {
+        height: 78%;
+    }
+
+    .modal_title {
+        font-size: 20px;
+    }
+
+    .modal_header p {
+        font-size: 14px;
+    }
+
+    .checkbox label {
+        font-size: 12px;
+    }
+}
