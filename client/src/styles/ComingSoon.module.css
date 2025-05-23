@@ -437,13 +437,6 @@
 }
 
 @media (max-width: 425px) {
-    .description {
-        padding: 0px 40px;
-    }
-    .join_button {
-        font-size: 14px;
-    }
-
     .logo img {
         width: 110px;
     }
@@ -451,21 +444,49 @@
     .join_button {
         width: 130px;
         height: 32px;
+        font-size: 14px;
     }
 
     .modal_container {
         height: 78%;
     }
 
+    .modal_header img {
+        width: 40px;
+    }
+
     .modal_title {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .modal_header p {
-        font-size: 14px;
+        font-size: 13px;
+        margin-bottom: 0px !important;
+    }
+
+    .modal_form label {
+        font-size: 12px;
+        padding-bottom: 5px;
+    }
+
+    .modal_form input {
+        height: 24px;
+        font-size: 12px;
+    }
+
+    .checkbox {
+        padding-bottom: 10px;
     }
 
     .checkbox label {
         font-size: 12px;
+    }
+
+    .checkbox input {
+        margin-top: -1px;
+    }
+
+    .submit {
+        width: 70%;
     }
 }
