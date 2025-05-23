@@ -3,7 +3,9 @@ import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
 import chat_desktop from '../assets/AI-chat-message-div.jpg'
 import chat_mobile from '../assets/ai-chat-mobile.jpg'
-import face from "../assets/face.jpg"
+import face1 from "../assets/image-avatar-black-woman-smiling.png"
+import face2 from "../assets/image-avatar-man-smiling.png"
+import face3 from "../assets/image-avatar-white-woman-smiling.png"
 import Lottie from 'lottie-react'
 import animationData from '../assets/animations/medsnap-animation.json'
 import logo_modal from '../assets/logo-div.png'
@@ -30,9 +32,9 @@ const ComingSoon = () => {
                 <button className={styles.join_button} onClick={openModal}>Join the Waitlist</button>
                 <div className={styles.faces}>
                   <div className={styles.faces_img}>
-                    <img src={face} alt="Face" className={styles.img1}/>
-                    <img src={face} alt="Face" className={styles.img2}/>
-                    <img src={face} alt="Face" className={styles.img3}/>
+                    <img src={face1} alt="Face" className={styles.img1}/>
+                    <img src={face2} alt="Face" className={styles.img2}/>
+                    <img src={face3} alt="Face" className={styles.img3}/>
                   </div>                  
                   <p className={styles.join_text}>Join our waitlist and get early access + exclusive perks.</p>
                 </div>
