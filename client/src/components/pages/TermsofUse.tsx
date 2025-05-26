@@ -1,5 +1,6 @@
 
 import { useTranslation } from "react-i18next";
+import bg_img from '../../assets/logo-icon-background-accent.png'
 
 
 const TermsofUse = () => {
@@ -7,6 +8,9 @@ const TermsofUse = () => {
  
   return (
     <div className="terms">
+      <div className="bg">
+            <img src={bg_img} alt="" />
+      </div>
         <h1>{t("termsofUse")}</h1>
       
       <h2>{t("terms.1")}</h2>
