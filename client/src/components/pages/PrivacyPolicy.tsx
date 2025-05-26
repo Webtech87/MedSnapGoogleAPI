@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
+import bg_img from '../../assets/logo-icon-background-accent.png';
 
 const PrivacyPolicy = () => {
     const { t } = useTranslation();
   return (
     <div className="terms">
+        <div className="bg">
+            <img src={bg_img} alt="" />
+        </div>
         <h1>{t("privacy_policy")}</h1>
 
             <p>{t("pp.respect")}</p>

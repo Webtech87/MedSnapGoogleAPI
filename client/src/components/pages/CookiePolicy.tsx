@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
+import bg_img from '../../assets/logo-icon-background-accent.png';
 
 const CookiePolicy = () => {
     const { t } = useTranslation();
   return (
     <div className="terms">
+        <div className="bg">
+            <img src={bg_img} alt="" />
+        </div>
         <h1>{t("cookie_policy")}</h1>
 
       <p>{t("our_website")}</p>
