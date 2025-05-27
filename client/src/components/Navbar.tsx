@@ -63,7 +63,7 @@ const Navbar = () => {
 
                 <div className={styles.checkbox}>
                   <input type="checkbox" required/>
-                  <label htmlFor="">{t("receive_early")} <a href="">{t("privacy_policy")}</a>.</label>
+                  <label htmlFor="">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>.</label>
                 </div> 
 
                 <button type='submit' className={styles.submit}>

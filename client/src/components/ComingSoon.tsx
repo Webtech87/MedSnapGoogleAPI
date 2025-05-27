@@ -76,17 +76,17 @@ const ComingSoon = () => {
               </div>
               <form className={styles.modal_form}>
                 <div  className={styles.form_content}>
-                  <label htmlFor="">{t("name")} <span className={styles.required}>*</span></label>
-                  <input type="text" placeholder={t("name")}required/>
-                  <label htmlFor="">{t("email")} <span className={styles.required}>*</span></label>
-                  <input type="email" placeholder={t("email")} required/>
-                  <label htmlFor="">{t("phone_number")} <span className={styles.required}>*</span></label>
-                  <input type="text" placeholder={t("phone_number")} required/>
+                  <label>{t("name")} <span className={styles.required}>*</span></label>
+                  <input type="text" name='name' placeholder={t("name")}required/>
+                  <label>{t("email")} <span className={styles.required}>*</span></label>
+                  <input type="email" name='email' placeholder={t("email")} required/>
+                  <label>{t("phone_number")} <span className={styles.required}>*</span></label>
+                  <input type="text" name='phone' placeholder={t("phone_number")} required/>
                 </div>
 
                 <div className={styles.checkbox}>
                   <input type="checkbox" required/>
-                  <label htmlFor="">{t("receive_early")} <a href="">{t("privacy_policy")}</a>.</label>
+                  <label htmlFor="">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>.</label>
                 </div> 
 
                 <button type='submit' className={styles.submit}>
