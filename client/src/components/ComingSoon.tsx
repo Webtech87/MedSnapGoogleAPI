@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
 import chat_desktop_en from '../assets/AI-chat-message-div.jpg'
@@ -15,12 +15,57 @@ import { useTranslation } from 'react-i18next'
 
 const ComingSoon = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showCookieModal, setShowCookieModal] = useState(false);
   
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language
+
+
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
+  const [functionalEnabled, setFunctionalEnabled] = useState(false);
+  const [performanceEnabled, setPerformanceEnabled] = useState(false);
+  const [announcementEnabled, setAnnouncementEnabled] = useState(false);
+
+
+  const savePreferences = () => {
+    const preferences = {
+      accepted: true,
+      analytics: analyticsEnabled,
+      functional: functionalEnabled,
+      performance: performanceEnabled,
+      announcement: announcementEnabled
+    };
+  localStorage.setItem("cookiesAccepted", JSON.stringify(preferences));
+  setShowCookieModal(false);
+  };
+
+  const acceptAll = () => {
+  setAnalyticsEnabled(true);
+  setFunctionalEnabled(true);
+  setPerformanceEnabled(true);
+  setAnnouncementEnabled(true);
+  savePreferences();
+  };
+
+  const rejectAll = () => {
+  setAnalyticsEnabled(false);
+  setFunctionalEnabled(false);
+  setPerformanceEnabled(false);
+  setAnnouncementEnabled(false);
+  savePreferences();
+  };
+
+
+
+  useEffect (() => {
+    const accepted = localStorage.getItem("cookiesAccepted");
+    if (!accepted){
+    setShowCookieModal(true);
+    }
+  }, []);
   
   return (
     <div className={styles.main_container}>
@@ -94,6 +139,109 @@ const ComingSoon = () => {
                     <Lottie animationData={aiva_button} className={styles.aiva_button} />
                   </span>
                 </button>
+                               
+              </form>
+            </div>
+          </div>
+        )}
+
+        {showCookieModal && (
+          <div className={styles.modal_overlay} onClick={closeModal}>
+            <div className={styles.modal_container_cookie} onClick={(e) => e.stopPropagation()}>
+              <button className={styles.close_button} onClick={closeModal} aria-label='Close Button'>&times;</button>
+              <div className={styles.modal_header}>
+                <img src={logo_modal} alt="" />
+                <h1 className={styles.modal_title}>Customize Consent Preferences</h1>
+                <p className={styles.modal_cookies_p}>We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies in each  consent category below. <br />
+                Cookies categorized  as "Necessary" are stored on your browser as they essential for enabling basic functionalities of the website.</p>
+              </div>
+              <form className={styles.modal_form}>
+
+              <div className={styles.cookie_section}>
+                <div className={styles.cookie_header}>
+                  <span>Necessary</span>
+                  <button type="button" className={`${styles.plusToggle} ${styles.enabled}`}>
+                    ✓
+                  </button>
+                </div>
+              </div>
+              
+              <div className={styles.cookie_section}>
+                <div className={styles.cookie_header}>
+                  <span>Analytics</span>
+                  <button
+                    type="button"
+                    className={`${styles.plusToggle} ${analyticsEnabled ? styles.enabled : ''}`}
+                    onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
+                  >
+                    {analyticsEnabled ? '✓' : '+'}
+                  </button>
+         
+                </div>
+              </div>
+
+              <div className={styles.cookie_section}>
+                <div className={styles.cookie_header}>
+                  <span>Functional</span>
+                  <button
+                    type="button"
+                    className={`${styles.plusToggle} ${functionalEnabled ? styles.enabled : ''}`}
+                    onClick={() => setFunctionalEnabled(!functionalEnabled)}
+                  >
+                    {functionalEnabled ? '✓' : '+'}
+                  </button>
+
+                </div>
+              </div>
+
+              <div className={styles.cookie_section}>
+                <div className={styles.cookie_header}>
+                  <span>Performance</span>
+                  <button
+                    type="button"
+                    className={`${styles.plusToggle} ${performanceEnabled ? styles.enabled : ''}`}
+                    onClick={() => setPerformanceEnabled(!performanceEnabled)}
+                  >
+                    {performanceEnabled ? '✓' : '+'}
+                  </button>
+
+                </div>
+              </div>
+
+              <div className={styles.cookie_section}>
+                <div className={styles.cookie_header}>
+                  <span>Announcement</span>
+                  <button
+                    type="button"
+                    className={`${styles.plusToggle} ${announcementEnabled ? styles.enabled : ''}`}
+                    onClick={() => setAnnouncementEnabled(!announcementEnabled)}
+                  >
+                    {announcementEnabled ? '✓' : '+'}
+                  </button>
+
+                </div>
+              </div>
+                 
+              <div className={styles.form_btns}>
+                <button onClick={rejectAll}>
+                  <span className={styles.buttonContent}>
+                    Reject
+                    <Lottie animationData={aiva_button} className={styles.aiva_button} />
+                  </span>
+                </button>
+                <button onClick={savePreferences} >
+                  <span className={styles.buttonContent}>
+                    Save Preferences
+                    <Lottie animationData={aiva_button} className={styles.aiva_button} />
+                  </span>
+                </button>
+                <button onClick={acceptAll}>
+                  <span className={styles.buttonContent}>
+                    Accept All
+                    <Lottie animationData={aiva_button} className={styles.aiva_button} />
+                  </span>
+                </button>
+              </div>
                                
               </form>
             </div>
