@@ -3,7 +3,8 @@ import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
 import chat_desktop_en from '../assets/AI-chat-message-div.jpg'
 import chat_desktop_pt from '../assets/AI-chat-message-div-pt.png'
-import chat_mobile from '../assets/ai-chat-mobile.jpg'
+import chat_mobile_en from '../assets/ai-chat-mobile.jpg'
+import chat_mobile_pt from '../assets/ai-chat-mobile-pt.png'
 import face1 from "../assets/image-avatar-black-woman-smiling.png"
 import face2 from "../assets/image-avatar-man-smiling.png"
 import face3 from "../assets/image-avatar-white-woman-smiling.png"
@@ -46,7 +47,7 @@ const ComingSoon = () => {
             </div>
             <div className={styles.aiva}>
                 <img src={currentLang === 'pt' ? chat_desktop_pt : chat_desktop_en} alt="" className={styles.chat_desktop} />
-                <img src={chat_mobile} alt="" className={styles.chat_mobile} />
+                <img src={currentLang === 'pt' ? chat_mobile_pt : chat_mobile_en} alt="" className={styles.chat_mobile} />
                 <div className={styles.aiva_desktop}>
                   <Lottie animationData={animationData} loop={true} />
                 </div>
