@@ -8,10 +8,11 @@ import Lottie from 'lottie-react'
 import logo_modal from '../assets/logo-div.png'
 import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from "react-i18next";
+import i18n from '../i18n'; 
 import axios from 'axios'
 
 const Navbar = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', specialty: '', phone: ''});
   const [submitMessage, setSubmitMessage] = useState('');
