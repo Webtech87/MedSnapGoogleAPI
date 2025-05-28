@@ -226,6 +226,36 @@
     padding: 0 20px;
 }
 
+.select_wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* or specific width */
+}
+
+.select_wrapper::after {
+  content: "▼"; /* Unicode arrow */
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  font-size: 0.8rem;
+}
+
+.select_wrapper select {
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;         /* Modern browsers */
+  width: 100%;
+  height: 32px;
+  padding: 0 40px 0 20px; /* Right padding for space where the arrow is */
+  border-radius: 50px;
+  border: none;
+  background-color: #E5E5E5;
+  font-size: 14px;
+}
+
 .required {
     color: red;
     font-family: 'Inter', sans-serif;
@@ -272,6 +302,13 @@
 
 .checkbox a {
     color: #000;
+}
+
+.submit_message {
+    color: #009933;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Inter', sans-serif;
 }
 
 @media (max-width: 767px) {

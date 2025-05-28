@@ -61,5 +61,14 @@
     "performance_cookies" : "Cookies de desempenho:",
     "performance_cookies.1" : " Nos ajudam a entender como você usa o site para melhorar sua experiência.",
     "marketing_cookies" : "Cookies de marketing:",
-    "marketing_cookies.1" : "Usados para mostrar anúncios relevantes com base nos seus interesses." 
+    "marketing_cookies.1" : "Usados para mostrar anúncios relevantes com base nos seus interesses.",
+    "submit_message": "Obrigado por entrar na lista de espera da MedSnap",
+    "specialties": "Especialidades",
+    "select": "Selecione",
+    "medicine": "Medicina",
+    "dentist": "Dentista",
+    "psychologist": "Psicologista",
+    "educator": "Educador",
+    "technician": "Técnico",
+    "other": "Outro"
 }

@@ -9,9 +9,26 @@ import logo_modal from '../assets/logo-div.png'
 import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from "react-i18next";
 import i18n from '../i18n'; 
+import axios from 'axios'
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', specialty: '', phone: ''});
+  const [submitMessage, setSubmitMessage] = useState('');
+  const specialties = [
+    {value:'Select', label: t('select')},
+    { value: 'Medicine', label: t('medicine') },
+    { value: 'Dentist', label: t('dentist') },
+    { value: 'Psychologist', label: t('psychologist') },
+    { value: 'Educator', label: t('educator') },
+    { value: 'Technician', label: t('technician') },
+    { value: 'Other', label: t('other') }
+  ]
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -20,7 +37,28 @@ const Navbar = () => {
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
   };
-  const { t } = useTranslation();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://localhost:8000/api/v1/GS/send_data_form/', formData,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        console.log('Success: ', response.data);
+        setSubmitMessage(t('submit_message'))
+        closeModal();
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        } else {
+          console.error("Unknown error", error);
+        }
+      }
+    };
 
   return (
     <nav className={styles.navbar}>
@@ -51,14 +89,29 @@ const Navbar = () => {
                 <h1 className={styles.modal_title}>{t("something_is_coming")}</h1>
                 <p>{t("be_the_first")}</p>
               </div>
-              <form className={styles.modal_form}>
+              <form onSubmit={handleSubmit} className={styles.modal_form}>
                 <div  className={styles.form_content}>
-                  <label htmlFor="">{t("name")} <span className={styles.required}>*</span></label>
-                  <input type="text" placeholder={t("name")} required/>
-                  <label htmlFor="">{t("email")} <span className={styles.required}>*</span></label>
-                  <input type="email" placeholder={t("email")} required/>
-                  <label htmlFor="">{t("phone_number")} <span className={styles.required}>*</span></label>
-                  <input type="text" placeholder={t("phone_number")} required/>
+                  <label>{t("name")} <span className={styles.required}>*</span></label>
+                  <input type="text" name='name' placeholder={t("name")} value={formData.name} onChange={handleChange} required/>
+                  <label>{t("email")} <span className={styles.required}>*</span></label>
+                  <input type="email" name='email' placeholder={t("email")} value={formData.email} onChange={handleChange} required/>
+                  <label>{t("specialties")} <span className={styles.required}>*</span></label>
+                  <div className={styles.select_wrapper}>
+                    <select
+                      name="specialty"
+                      value={formData.specialty}
+                      onChange={handleChange}
+                      required
+                    >
+                      {specialties.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>                  
+                  <label>{t("phone_number")} <span className={styles.required}>*</span></label>
+                  <input type="text" name='phone' placeholder={t("phone_number")} value={formData.phone} onChange={handleChange} required/>
                 </div>
 
                 <div className={styles.checkbox}>
@@ -74,6 +127,9 @@ const Navbar = () => {
                 </button>
                                
               </form>
+              {submitMessage && (
+                <p className={styles.submit_message}>{submitMessage}</p>
+              )}
             </div>
           </div>
         )}        

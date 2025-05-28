@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 import gspread
 from google.oauth2.service_account import Credentials
 import datetime
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import FollowersForm
 from dotenv import load_dotenv
@@ -13,7 +15,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SHEET_HEADERS = ['Name', 'Email', 'Telefone', 'Subscrible at']
-
 
 def add_to_gs(new_data: list[str]):
     try:
@@ -57,14 +58,16 @@ def add_to_gs(new_data: list[str]):
     except Exception as sheet_error:
         print(f"Google Sheets error: {sheet_error}")
 
-
+@csrf_exempt
 def send_email(request):
     context = {
         'title': "Follow us",
         'name': "Boris Isac"
     }
     if request.method == "POST":
-        form = FollowersForm(request.POST)
+        data = json.loads(request.body)
+        form = FollowersForm(data)
+
         if form.is_valid():
             try:
                 cd = form.cleaned_data
