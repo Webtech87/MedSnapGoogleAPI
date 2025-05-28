@@ -212,7 +212,7 @@
 
 .select_wrapper option {
     background-color: #fff;
-    font-family: 'Inter', sans-serif;
+    border: none;
 }
 
 
