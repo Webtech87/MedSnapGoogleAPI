@@ -214,14 +214,13 @@ const ComingSoon = () => {
         {showCookieModal && (
           <div className={styles.modal_overlay} onClick={closeModal}>
             <div className={styles.modal_container_cookie} onClick={(e) => e.stopPropagation()}>
-              <button className={styles.close_button} onClick={closeModal} aria-label='Close Button'>&times;</button>
-              <div className={styles.modal_header}>
+              <div className={styles.modal_header_cookie}>
                 <img src={logo_modal} alt="" />
-                <h1 className={styles.modal_title}>Customize Consent Preferences</h1>
+                <h1 className={styles.modal_title_cookie}>Customize Consent Preferences</h1>
                 <p className={styles.modal_cookies_p}>We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies in each  consent category below. <br />
                 Cookies categorized  as "Necessary" are stored on your browser as they essential for enabling basic functionalities of the website.</p>
               </div>
-              <form className={styles.modal_form}>
+              <form className={styles.modal_form_cookie}>
 
               <div className={styles.cookie_section}>
                 <div className={styles.cookie_header}>
