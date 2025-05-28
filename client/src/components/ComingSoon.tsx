@@ -15,6 +15,7 @@ import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 
+
 const ComingSoon = () => {
   const { t, i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
