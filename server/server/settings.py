@@ -26,7 +26,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", 
+                 "127.0.0.1", 
+                 "medsnap-backend.onrender.com",
+                 "medsnap.onrender.com"
+                ]
 
 # Application definition
 
@@ -56,6 +60,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://medsnap.onrender.com"
 ]
 
 ROOT_URLCONF = 'server.urls'
