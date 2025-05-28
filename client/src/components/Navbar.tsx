@@ -17,12 +17,22 @@ const Navbar = () => {
   const [formData, setFormData] = useState({ name: '', email: '', specialty: '', phone: ''});
   const [submitMessage, setSubmitMessage] = useState('');
   const specialties = [
-    {value:'Select', label: t('select')},
-    { value: 'Medicine', label: t('medicine') },
-    { value: 'Dentist', label: t('dentist') },
-    { value: 'Psychologist', label: t('psychologist') },
-    { value: 'Educator', label: t('educator') },
-    { value: 'Technician', label: t('technician') },
+    { value:'Select', label: t('select')},
+    { value: 'General', label: t('general') },
+    { value: 'pediatrician', label: t('pediatrician') },
+    { value: 'Cardiologist', label: t('cardiologist') },
+    { value: 'Dermatologist', label: t('dermatologist') },
+    { value: 'Neurologist', label: t('neurologist') },
+    { value: 'Psychiatrist', label: t('psychiatrist') },
+    { value: 'Surgeon', label: t('surgeon') },
+    { value: 'Ophthalmologist', label: t('ophthalmologist') },
+    { value: 'Gynecologist', label: t('gynecologist') },
+    { value: 'Orthopedist', label: t('orthopedist') },
+    { value: 'Radiologist', label: t('radiologist') },
+    { value: 'Urologist', label: t('urologist') },
+    { value: 'Oncologist', label: t('oncologist') },
+    { value: 'Endocrinologist', label: t('endocrinologist') },
+    { value: 'Otolaryngologist', label: t('otolaryngologist') },
     { value: 'Other', label: t('other') }
   ]
 
