@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import FollowersForm
 from dotenv import load_dotenv
+import base64
 
 load_dotenv()
 
@@ -24,14 +25,15 @@ def add_to_gs(new_data: list[str]):
             'https://www.googleapis.com/auth/drive',
         ]
         GOOGLE_SHEET_ID = os.environ.get('GOOGLE_SHEET_ID')
-        CREDENTIALS_FILE = os.environ.get('GOOGLE_SHEETS_CREDS_PATH')
+        GOOGLE_SHEET_BASE64 = os.environ.get('GOOGLE_SHEET_BASE64')
 
         print(f"Google Sheet ID: {GOOGLE_SHEET_ID}")
-        print(f"Credentials file path: {CREDENTIALS_FILE}")
 
-        credentials = Credentials.from_service_account_file(
-            CREDENTIALS_FILE,
-            scopes=SCOPES
+        credentials_info = json.loads(
+            base64.b64decode(GOOGLE_SHEET_BASE64).decode('utf-8')
+        )
+        credentials = Credentials.from_service_account_info(
+            credentials_info, scopes=SCOPES
         )
 
         client = gspread.authorize(credentials)
