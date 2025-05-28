@@ -96,7 +96,7 @@ const ComingSoon = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/GS/send_data_form/', formData,
+      const response = await axios.post('https://medsnap-backend.onrender.com/api/v1/GS/send_data_form/', formData,
         {
           headers: {
             'Content-Type': 'application/json'
