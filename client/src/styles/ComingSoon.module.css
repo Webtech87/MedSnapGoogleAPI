@@ -135,6 +135,18 @@
     padding: 20px 150px;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
+    position: absolute;
+    bottom: 0;
+}
+
+.copyright {
+    position: fixed;
+    left: 10%;
+}
+
+.links {
+    position: fixed;
+    right: 10%;
 }
 
 .links a {
@@ -405,6 +417,7 @@
     .footer {
         flex-direction: column;
         padding: 20px;
+        position: static;
     }
 
     .links a {
@@ -418,12 +431,13 @@
 
     .links {
         order: 1;
-        padding-top: 20px;
+        position: static;
     }
 
     .copyright {
         order: 2;
         text-align: center;
+        position: static;
     }
 
     .modal_container {
@@ -447,13 +461,6 @@
 @media (min-width: 1900px) {
     .home {
         padding-top: 100px;
-    }
-
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px 0px;
     }
 
     .chat_desktop {

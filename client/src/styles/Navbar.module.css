@@ -69,7 +69,7 @@
     position: relative;
     background-color: #fff;
     width: 27%;
-    height: 90%;
+    height: 95%;
     border-radius: 32px;
 }
 
@@ -90,6 +90,7 @@
     padding-top: 12% !important;
     font-family: 'Inter', sans-serif;
     padding: 0 8%;
+    height: 20%;
 }
 
 .modal_title {
@@ -120,7 +121,7 @@
 .form_content label {
     padding: 10px 5px;
     color: #7978DE;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .form_content input {
@@ -225,7 +226,7 @@
 
     .modal_container {
         width: 80%;
-        height: 75%;
+        height: 85%;
     }
 
     .modal_header p {
@@ -243,8 +244,12 @@
 
 @media (min-width: 1900px) {
     .modal_container {
-        height: 70%;
+        height: 80%;
         width: 25%;
+    }
+
+    .modal_content {
+        max-height: 95%;
     }
 
     .modal_header {
@@ -255,6 +260,11 @@
     .modal_form {        
         padding: 0 10%;
     }
+
+    .checkbox input {
+        transform: scale(1.2);
+    }
+    
 }
 
 @media (max-width: 425px) {
@@ -270,7 +280,7 @@
     }
 
     .modal_container {
-        height: 78%;
+        height: 85%;
     }
 
     .modal_header img {
@@ -306,6 +316,51 @@
 
     .checkbox input {
         margin-top: -1px;
+    }
+
+    .submit {
+        width: 70%;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1900px) {
+    .modal_container {
+        height: 85%;
+    }
+    .modal_header img {
+        width: 40px;
+    }
+
+    .modal_title {
+        font-size: 18px;
+    }
+
+    .modal_header p {
+        font-size: 14px;
+        margin-bottom: 0px !important;
+    }
+
+    .modal_form label {
+        font-size: 13px;
+        padding-bottom: 5px;
+    }
+
+    .modal_form input, .modal_form select {
+        height: 26px;
+        font-size: 13px;
+    }
+
+    .checkbox {
+        padding-bottom: 10px;
+    }
+
+    .checkbox label {
+        font-size: 12px;
+    }
+
+    .checkbox input {
+        margin-top: -8px;
+        transform: scale(1.3);
     }
 
     .submit {

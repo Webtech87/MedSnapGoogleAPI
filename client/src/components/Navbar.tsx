@@ -8,7 +8,6 @@ import Lottie from 'lottie-react'
 import logo_modal from '../assets/logo-div.png'
 import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from "react-i18next";
-import i18n from '../i18n'; 
 import axios from 'axios'
 
 const Navbar = () => {
@@ -83,53 +82,55 @@ const Navbar = () => {
         {showModal && (
           <div className={styles.modal_overlay} onClick={closeModal}>
             <div className={styles.modal_container} onClick={(e) => e.stopPropagation()}>
-              <button className={styles.close_button} onClick={closeModal}>&times;</button>
-              <div className={styles.modal_header}>
-                <img src={logo_modal} alt="" />
-                <h1 className={styles.modal_title}>{t("something_is_coming")}</h1>
-                <p>{t("be_the_first")}</p>
-              </div>
-              <form onSubmit={handleSubmit} className={styles.modal_form}>
-                <div  className={styles.form_content}>
-                  <label>{t("name")} <span className={styles.required}>*</span></label>
-                  <input type="text" name='name' placeholder={t("name")} value={formData.name} onChange={handleChange} required/>
-                  <label>{t("email")} <span className={styles.required}>*</span></label>
-                  <input type="email" name='email' placeholder={t("email")} value={formData.email} onChange={handleChange} required/>
-                  <label>{t("specialties")} <span className={styles.required}>*</span></label>
-                  <div className={styles.select_wrapper}>
-                    <select
-                      name="specialty"
-                      value={formData.specialty}
-                      onChange={handleChange}
-                      required
-                    >
-                      {specialties.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>                  
-                  <label>{t("phone_number")} <span className={styles.required}>*</span></label>
-                  <input type="text" name='phone' placeholder={t("phone_number")} value={formData.phone} onChange={handleChange} required/>
+              <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
+                <button className={styles.close_button} onClick={closeModal}>&times;</button>
+                <div className={styles.modal_header}>
+                  <img src={logo_modal} alt="" />
+                  <h1 className={styles.modal_title}>{t("something_is_coming")}</h1>
+                  <p>{t("be_the_first")}</p>
                 </div>
+                <form onSubmit={handleSubmit} className={styles.modal_form}>
+                  <div  className={styles.form_content}>
+                    <label>{t("name")} <span className={styles.required}>*</span></label>
+                    <input type="text" name='name' placeholder={t("name")} value={formData.name} onChange={handleChange} required/>
+                    <label>{t("email")} <span className={styles.required}>*</span></label>
+                    <input type="email" name='email' placeholder={t("email")} value={formData.email} onChange={handleChange} required/>
+                    <label>{t("specialties")} <span className={styles.required}>*</span></label>
+                    <div className={styles.select_wrapper}>
+                      <select
+                        name="specialty"
+                        value={formData.specialty}
+                        onChange={handleChange}
+                        required
+                      >
+                        {specialties.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>                  
+                    <label>{t("phone_number")} <span className={styles.required}>*</span></label>
+                    <input type="text" name='phone' placeholder={t("phone_number")} value={formData.phone} onChange={handleChange} required/>
+                  </div>
 
-                <div className={styles.checkbox}>
-                  <input type="checkbox" required/>
-                  <label htmlFor="">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>.</label>
-                </div> 
+                  <div className={styles.checkbox}>
+                    <input type="checkbox" required/>
+                    <label htmlFor="">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>.</label>
+                  </div> 
 
-                <button type='submit' className={styles.submit}>
-                  <span className={styles.buttonContent}>
-                    {t("join")}
-                    <Lottie animationData={aiva_button} className={styles.aiva_button} />
-                  </span>
-                </button>
-                               
-              </form>
-              {submitMessage && (
-                <p className={styles.submit_message}>{submitMessage}</p>
-              )}
+                  <button type='submit' className={styles.submit}>
+                    <span className={styles.buttonContent}>
+                      {t("join")}
+                      <Lottie animationData={aiva_button} className={styles.aiva_button} />
+                    </span>
+                  </button>
+                                
+                </form>
+                {submitMessage && (
+                  <p className={styles.submit_message}>{submitMessage}</p>
+                )}
+              </div>
             </div>
           </div>
         )}        
