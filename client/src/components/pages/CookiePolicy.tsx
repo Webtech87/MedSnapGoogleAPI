@@ -19,11 +19,9 @@ const CookiePolicy = () => {
       <p>{t("how_we_use.1")}</p>
 
       <h2>{t("types_cookies")}</h2>
-      <ul>
-        <li><strong>{t("essential_cookies")}</strong> {t("essentialcookies.1")}</li>
-        <li><strong>{t("performance_cookies")}</strong>{t("performance_cookies.1")}</li>
-        <li><strong>{t("marketing_cookies")}</strong> {t("marketing_cookies.1")}</li>
-      </ul>
+      <p><strong>{t("essential_cookies")}</strong><br/> {t("essentialcookies.1")}</p>
+      <p><strong>{t("performance_cookies")}</strong><br/> {t("performance_cookies.1")}</p>
+      <p><strong>{t("marketing_cookies")}</strong><br/> {t("marketing_cookies.1")}</p>
 
       <h2>{t("managing_cookies")}</h2>
       <p>{t("managing_cookies.1")}</p>

@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
             <p>{t("your_rights.1")}</p>
 
             <h2>{t("contact")}</h2>
-            <p>{t("contact.1")}</p>
+            <p>{t("contact.1")}<a href="mailto:info@med-snap.com">info@med-snap.com</a></p>
       
     </div>
   )
