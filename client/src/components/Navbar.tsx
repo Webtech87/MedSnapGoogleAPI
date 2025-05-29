@@ -10,12 +10,15 @@ import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from "react-i18next";
 import i18n from '../i18n'; 
 import axios from 'axios'
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const Navbar = () => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', specialty: '', phone: ''});
   const [submitMessage, setSubmitMessage] = useState('');
+
   const specialties = [
     { value:'Select', label: t('select')},
     { value: 'General', label: t('general') },
@@ -60,7 +63,16 @@ const Navbar = () => {
         )
         console.log('Success: ', response.data);
         setSubmitMessage(t('submit_message'))
-        closeModal();
+        setTimeout(() => {
+          closeModal();
+          setSubmitMessage(''); // Optional: clear message after close
+          setFormData({
+            name: '',
+            email: '',
+            specialty: '',
+            phone: ''
+          });
+        }, 3000);
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error(error.message);
@@ -69,6 +81,11 @@ const Navbar = () => {
         }
       }
     };
+
+  const handlePhoneChange = (phone: string) => {
+    setFormData({ ...formData, phone });
+  };
+
 
   return (
     <nav className={styles.navbar}>
@@ -122,7 +139,29 @@ const Navbar = () => {
                       </select>
                     </div>                  
                     <label>{t("phone_number")} <span className={styles.required}>*</span></label>
-                    <input type="text" name='phone' placeholder={t("phone_number")} value={formData.phone} onChange={handleChange} required/>
+                    <PhoneInput
+                      country={'pt'}
+                      value={formData.phone}
+                      onChange={handlePhoneChange}
+                      inputProps={{
+                        name: 'phone',
+                        required: true,
+                        placeholder: t('phone_number'),
+                      }}
+                      inputClass={styles.phone_input}
+                      buttonStyle={{
+                        background: 'transparent',
+                        border: 'none',
+                        borderRadius: '50px',
+                        height: '32px',
+                        paddingLeft: '8px',
+                      }}
+                      inputStyle={{
+                        borderRadius: '50px',
+                        fontSize: '13px'
+                      }}
+                      containerClass={styles.phone_input_container}
+                    />
                   </div>
 
                   <div className={styles.checkbox}>
