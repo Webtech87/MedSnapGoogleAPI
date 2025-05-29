@@ -60,3 +60,7 @@ body {
     transform: rotate(-15deg) translate(-50px, 50px);
     opacity: 0.4;
 }
+
+.terms {
+    text-align: center;
+}

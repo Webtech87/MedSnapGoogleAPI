@@ -175,7 +175,7 @@
 .modal_container {
     position: relative;
     background-color: #fff;
-    width: 27%;
+    width: 35%;
     height: 95%;
     border-radius: 32px;
 }
@@ -207,7 +207,7 @@
 }
 
 .modal_header img {
-    width: 50px;
+    width: 12%;
 }
 
 .modal_form {
@@ -417,6 +417,37 @@
     background-color: #fff;
     border: none;
 }
+
+.phone_input_container {
+  background-color: #E5E5E5;
+  border: none !important;
+  border-radius: 50px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.phone_input {
+  background-color: transparent !important;
+  border: none !important;
+  height: 32px;
+  padding: 0 10px;
+  outline: none;
+  flex: 1;
+  font-size: 13px;
+}
+
+/* Optional: Style the flag dropdown */
+.phone_input_container .flag-dropdown {
+  background: transparent;
+  border: none !important;
+}
+
+.phone_input_container .flag-dropdown.open,
+.phone_input_container .flag-dropdown:hover {
+  background: transparent;
+}
+
 
 .modal_container_cookie{
     position: relative;
@@ -687,7 +718,7 @@
 
     .modal_container {
         width: 80%;
-        height: 75%;
+        height: 85%;
     }
 
     .modal_header p {
@@ -743,7 +774,6 @@
 
     .modal_header {
         text-align: center;
-        padding: 0 10%;
     }
 
     .modal_form {        
@@ -758,6 +788,8 @@
         width: 30%;
         height: 70%;
     }
+
+    
 }
 
 @media (max-width: 428px) {
@@ -835,10 +867,6 @@
     .modal_header p {
         font-size: 14px;
         margin-bottom: 0px !important;
-    }
-
-    .modal_form {
-        padding-top: 35px;
     }
 
     .modal_form label {

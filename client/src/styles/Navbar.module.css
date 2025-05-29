@@ -68,7 +68,7 @@
 .modal_container {
     position: relative;
     background-color: #fff;
-    width: 27%;
+    width: 35%;
     height: 95%;
     border-radius: 32px;
 }
@@ -132,6 +132,31 @@
     padding: 0 20px;
 }
 
+.phone_input_container {
+  background-color: #E5E5E5;
+  border: none !important;
+  border-radius: 50px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.phone_input {
+  background-color: transparent !important;
+  border: none !important;
+  height: 32px;
+  padding: 0 10px;
+  outline: none;
+  flex: 1;
+  font-size: 13px;
+}
+
+/* Optional: Style the flag dropdown */
+.phone_input_container .flag-dropdown {
+  background: transparent;
+  border: none !important;
+}
+
 .required {
     color: red;
     font-family: 'Inter', sans-serif;
@@ -148,6 +173,12 @@
     width: 60%;
     border-radius: 50px;
     cursor: pointer;
+}
+
+.submit_message {
+    color: #009933;
+    text-align: center;
+    font-weight: bold;
 }
 
 .buttonContent {

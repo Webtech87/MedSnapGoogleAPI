@@ -38,7 +38,7 @@ const TermsofUse = () => {
       <p>{t("terms.8p")}</p>
 
       <h2>{t("terms.9")}</h2>
-      <p>{t("terms.9p")}</p>
+      <p>{t("terms.9p")}<a href="mailto:info@med-snap.com">info@med-snap.com</a></p>
     
     
     </div>
