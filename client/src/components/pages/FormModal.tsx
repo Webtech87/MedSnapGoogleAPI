@@ -44,6 +44,8 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
     { value: 'Other', label: t('other') }
   ]
 
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -63,6 +65,8 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
     // If any error exists, stop submission
     if (Object.values(newErrors).some(error => error !== '')) return;
 
+    setSubmitStatus('sending');
+
     try {
       const response = await axios.post('https://medsnap-backend.onrender.com/api/v1/GS/send_data_form/', formData,
         {
@@ -74,6 +78,7 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
       console.log('Success: ', response.data);
       setErrors({ name: '', email: '', specialty: '', phone: '', consent: '' });
       setSubmitMessage(t('submit_message'))
+      setSubmitStatus('sent');
       setTimeout(() => {
         onClose();
         setSubmitMessage(''); // Optional: clear message after close
@@ -167,7 +172,11 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
 
                 <button type='submit' className={styles.submit}>
                   <span className={styles.buttonContent}>
-                    {t("join")}
+                    {submitStatus === 'sending'
+                        ? t('sending')
+                        : submitStatus === 'sent'
+                        ? t('sent')
+                        : t('join')}
                     <Lottie animationData={aiva_button} className={styles.aiva_button} />
                   </span>
                 </button>
