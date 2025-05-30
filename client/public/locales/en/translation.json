@@ -14,6 +14,8 @@
     "phone_number" : "Phone Number",
     "receive_early" : "Yes, I’d like to receive early access, updates, and exclusive offers. I’ve read and agree to the",
     "join" : "Join",
+    "sending": "Sending...",
+    "sent": "Sent!",
     "termsofUse" : "Terms of Use",
     "terms.1" : "1. Acceptance of Terms",
     "terms.1p" : "By using MedSnap, you agree to these Terms of Use. If you do not agree, please do not use the service.",
