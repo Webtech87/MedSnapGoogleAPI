@@ -80,5 +80,6 @@
     "oncologist": "Oncologista",
     "endocrinologist": "Endocrinologista",
     "otolaryngologist": "Otorrinolaringologista",
-    "other": "Outro"
+    "other": "Outro",
+    "required": "Obrigatório"
 }

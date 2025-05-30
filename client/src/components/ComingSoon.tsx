@@ -10,49 +10,18 @@ import face2 from "../assets/image-avatar-man-smiling.png"
 import face3 from "../assets/image-avatar-white-woman-smiling.png"
 import Lottie from 'lottie-react'
 import animationData from '../assets/animations/medsnap-animation.json'
-import logo_modal from '../assets/logo-div.png'
-import aiva_button from '../assets/animations/avatar-animation-white.json'
 import { useTranslation } from 'react-i18next'
-import axios from 'axios'
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 
+type ComingSoonProps = {
+  openModal: () => void;
+};
 
-const ComingSoon = () => {
+const ComingSoon: React.FC<ComingSoonProps> = ({ openModal }) => {
   const { t, i18n } = useTranslation();
-  const [showModal, setShowModal] = useState(false);
-  const [showCookieModal, setShowCookieModal] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', specialty: '', phone: ''});
-  const [submitMessage, setSubmitMessage] = useState('');
-  const specialties = [
-    { value:'Select', label: t('select')},
-    { value: 'General', label: t('general') },
-    { value: 'pediatrician', label: t('pediatrician') },
-    { value: 'Cardiologist', label: t('cardiologist') },
-    { value: 'Dermatologist', label: t('dermatologist') },
-    { value: 'Neurologist', label: t('neurologist') },
-    { value: 'Psychiatrist', label: t('psychiatrist') },
-    { value: 'Surgeon', label: t('surgeon') },
-    { value: 'Ophthalmologist', label: t('ophthalmologist') },
-    { value: 'Gynecologist', label: t('gynecologist') },
-    { value: 'Orthopedist', label: t('orthopedist') },
-    { value: 'Radiologist', label: t('radiologist') },
-    { value: 'Urologist', label: t('urologist') },
-    { value: 'Oncologist', label: t('oncologist') },
-    { value: 'Endocrinologist', label: t('endocrinologist') },
-    { value: 'Otolaryngologist', label: t('otolaryngologist') },
-    { value: 'Other', label: t('other') }
-  ]
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
   const currentLang = i18n.language
 
 
+  const [showCookieModal, setShowCookieModal] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
   const [functionalEnabled, setFunctionalEnabled] = useState(true);
   const [performanceEnabled, setPerformanceEnabled] = useState(true);
@@ -92,45 +61,11 @@ const ComingSoon = () => {
   useEffect (() => {
     const accepted = localStorage.getItem("cookiesAccepted");
     if (!accepted){
-    setShowCookieModal(true);
-    }
-  }, []);
-  
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('https://medsnap-backend.onrender.com/api/v1/GS/send_data_form/', formData,
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-      console.log('Success: ', response.data);
-      setSubmitMessage(t('submit_message'))
-      setTimeout(() => {
-        closeModal();
-        setSubmitMessage(''); // Optional: clear message after close
-        setFormData({
-          name: '',
-          email: '',
-          specialty: '',
-          phone: ''
-        });
-      }, 3000);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        console.error("Unknown error", error);
+      setShowCookieModal(true);
       }
-    }
-  };
-
-  const handlePhoneChange = (phone: string) => {
-    setFormData({ ...formData, phone });
-  };
-
+    }, []);
+    
+    
   return (
     <div className={styles.main_container}>
         <div className={styles.bg}>
@@ -170,183 +105,7 @@ const ComingSoon = () => {
             <a href="/privacy">{t("privacy_policy")}</a>
             <a href="/cookies">{t("cookie_policy")}</a>
           </div>
-        </div>
-        
-
-        {showModal && (
-          <div className={styles.modal_overlay} onClick={closeModal}>
-            <div className={styles.modal_container} onClick={(e) => e.stopPropagation()}>
-              <button className={styles.close_button} onClick={closeModal}>&times;</button>
-              <div className={styles.modal_header}>
-                <img src={logo_modal} alt="" />
-                <h1 className={styles.modal_title}>{t("something_is_coming")}</h1>
-                <p>{t("be_the_first")}</p>
-              </div>
-              <form onSubmit={handleSubmit} className={styles.modal_form}>
-                <div  className={styles.form_content}>
-                  <label>{t("name")} <span className={styles.required}>*</span></label>
-                  <input type="text" name='name' placeholder={t("name")} value={formData.name} onChange={handleChange} required/>
-                  <label>{t("email")} <span className={styles.required}>*</span></label>
-                  <input type="email" name='email' placeholder={t("email")} value={formData.email} onChange={handleChange} required/>
-                  <label>{t("specialties")} <span className={styles.required}>*</span></label>
-                  <div className={styles.select_wrapper}>
-                    <select
-                      name="specialty"
-                      value={formData.specialty}
-                      onChange={handleChange}
-                      required
-                    >
-                      {specialties.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>                  
-                  <label>{t("phone_number")} <span className={styles.required}>*</span></label>
-                  <PhoneInput
-                      country={'pt'}
-                      value={formData.phone}
-                      onChange={handlePhoneChange}
-                      inputProps={{
-                        name: 'phone',
-                        required: true,
-                        placeholder: t('phone_number'),
-                      }}
-                      inputClass={styles.phone_input}
-                      buttonStyle={{
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        borderRadius: '50px',
-                        height: '32px',
-                        paddingLeft: '8px',
-                      }}
-                      inputStyle={{
-                        borderRadius: '50px',
-                        fontSize: '13px'
-                      }}
-                      containerClass={styles.phone_input_container}
-                    />
-                </div>
-
-                <div className={styles.checkbox}>
-                  <input type="checkbox" required/>
-                  <label htmlFor="">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>.</label>
-                </div> 
-
-                <button type='submit' className={styles.submit}>
-                  <span className={styles.buttonContent}>
-                    {t("join")}
-                    <Lottie animationData={aiva_button} className={styles.aiva_button} />
-                  </span>
-                </button>
-                               
-              </form>
-              {submitMessage && (
-                <p className={styles.submit_message}>{submitMessage}</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {showCookieModal && (
-          <div className={styles.modal_overlay} onClick={closeModal}>
-            <div className={styles.modal_container_cookie} onClick={(e) => e.stopPropagation()}>
-              <div className={styles.modal_header_cookie}>
-                <img src={logo_modal} alt="" />
-                <h1 className={styles.modal_title_cookie}>Customize Consent Preferences</h1>
-                <p className={styles.modal_cookies_p}>We use cookies to help you navigate efficiently and perform certain functions. You will find detailed information about all cookies in each  consent category below. <br />
-                Cookies categorized  as "Necessary" are stored on your browser as they essential for enabling basic functionalities of the website.</p>
-              </div>
-              <form className={styles.modal_form_cookie}>
-
-              <div className={styles.cookie_section}>
-                <div className={styles.cookie_header}>
-                  <span>Necessary</span>
-                  <button type="button" className={styles.enabled_cookies}>
-                    ✓
-                  </button>
-                </div>
-              </div>
-              
-              <div className={styles.cookie_section}>
-                <div className={styles.cookie_header}>
-                  <span>Analytics</span>
-                  <button
-                    type="button"
-                    className={analyticsEnabled ? styles.enabled_cookies : styles.disabled_cookies}
-                    onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
-                  >
-                    {analyticsEnabled ? '✓' : '×'}
-                  </button>
-         
-                </div>
-              </div>
-
-              <div className={styles.cookie_section}>
-                <div className={styles.cookie_header}>
-                  <span>Functional</span>
-                  <button
-                    type="button"
-                    className={functionalEnabled ? styles.enabled_cookies : styles.disabled_cookies}
-                    onClick={() => setFunctionalEnabled(!functionalEnabled)}
-                  >
-                    {functionalEnabled ? '✓' : '×'}
-                  </button>
-
-                </div>
-              </div>
-
-              <div className={styles.cookie_section}>
-                <div className={styles.cookie_header}>
-                  <span>Performance</span>
-                  <button
-                    type="button"
-                    className={performanceEnabled ? styles.enabled_cookies : styles.disabled_cookies}
-                    onClick={() => setPerformanceEnabled(!performanceEnabled)}
-                  >
-                    {performanceEnabled ? '✓' : '×'}
-                  </button>
-
-                </div>
-              </div>
-
-              <div className={styles.cookie_section}>
-                <div className={styles.cookie_header}>
-                  <span>Announcement</span>
-                  <button
-                    type="button"
-                    className={announcementEnabled ? styles.enabled_cookies : styles.disabled_cookies}
-                    onClick={() => setAnnouncementEnabled(!announcementEnabled)}
-                  >
-                    {announcementEnabled ? '✓' : '×'}
-                  </button>
-
-                </div>
-              </div>
-                 
-              <div className={styles.form_btns}>
-                <button onClick={rejectAll}>
-                  <span className={styles.buttonContent}>
-                    Reject
-                  </span>
-                </button>
-                <button onClick={savePreferences} >
-                  <span className={styles.buttonContent}>
-                    Save Preferences
-                  </span>
-                </button>
-                <button onClick={acceptAll}>
-                  <span className={styles.buttonContent}>
-                    Accept All
-                  </span>
-                </button>
-              </div>
-                               
-              </form>
-            </div>
-          </div>
-        )}
+        </div>       
     </div>
     
   )
