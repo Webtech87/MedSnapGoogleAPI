@@ -24,7 +24,6 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
     consent: ''
   });
   const [submitMessage, setSubmitMessage] = useState('');
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const specialties = [
     { value:'Select', label: t('select')},
     { value: 'General', label: t('general') },
@@ -64,8 +63,6 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
     // If any error exists, stop submission
     if (Object.values(newErrors).some(error => error !== '')) return;
 
-    setSubmitStatus('sending');
-
     try {
       const response = await axios.post('https://medsnap-backend.onrender.com/api/v1/GS/send_data_form/', formData,
         {
@@ -77,7 +74,6 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
       console.log('Success: ', response.data);
       setErrors({ name: '', email: '', specialty: '', phone: '', consent: '' });
       setSubmitMessage(t('submit_message'))
-      setSubmitStatus('sent');
       setTimeout(() => {
         onClose();
         setSubmitMessage(''); // Optional: clear message after close
@@ -169,13 +165,9 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
                   <label htmlFor="consent">{t("receive_early")} <a href="/privacy">{t("privacy_policy")}</a>. {errors.consent && <span className={styles.required}>{errors.consent}</span>}</label>
                 </div> 
 
-                <button type='submit' className={styles.submit} disabled={submitStatus === 'sending'}>
+                <button type='submit' className={styles.submit}>
                   <span className={styles.buttonContent}>
-                    {submitStatus === 'sending'
-                        ? t('sending')
-                        : submitStatus === 'sent'
-                        ? t('sent')
-                        : t('join')}
+                    {t("join")}
                     <Lottie animationData={aiva_button} className={styles.aiva_button} />
                   </span>
                 </button>

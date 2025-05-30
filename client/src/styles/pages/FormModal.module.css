@@ -7,26 +7,105 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+    animation: fadeInBackdrop 0.4s ease-out;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+@keyframes fadeInBackdrop {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(6px);
+    }
 }
 
 .modal_container {
     position: relative;
-    background-color: #fff;
-    width: 35%;
-    height: 95%;
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 90vh;
     border-radius: 32px;
+    box-shadow: 
+        0 30px 100px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: modalSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(50px) rotateX(15deg);
+        filter: blur(15px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(0.95) translateY(10px) rotateX(5deg);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotateX(0deg);
+        filter: blur(0px);
+    }
 }
 
 .close_button {
     position: absolute;
     top: 2%;
     right: 4%;
-    font-size: 24px;
-    background-color: #fff;
-    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.close_button:hover {
+    background: linear-gradient(145deg, #e9ecef, #dee2e6);
+    color: #333;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.close_button:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(88, 86, 214, 0.3),
+        0 8px 30px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.close_button:active {
+    transform: scale(1.05) rotate(90deg);
 }
 
 .modal_header {
@@ -34,26 +113,58 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Inter', sans-serif;
-    padding: 12% 8% 4% 8%;
-    height: 20%;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.5) 100%);
+    flex-shrink: 0;
 }
 
 .modal_title {
     padding: 0 20px;
     text-align: center;
     font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 1rem 0 0.5rem 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #5856D6, #4845b8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .modal_header img {
     width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(88, 86, 214, 0.2));
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.modal_header p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: #666;
+    margin: 0;
 }
 
 .modal_form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0 8%;
-
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .form_content {
@@ -61,78 +172,198 @@
     flex-direction: column;
     font-family: 'Inter', sans-serif;
     width: 100%;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .form_content label {
-    padding: 10px 5px;
+    padding: 10px 5px 5px 5px;
     color: #7978DE;
     font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .form_content input {
-    border: none;
-    background-color: #E5E5E5;
+    border: 2px solid #e8e8e8;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
     height: 32px;
     border-radius: 50px;
     padding: 0 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #333;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form_content input:focus {
+    outline: none;
+    border-color: #5856D6;
+    background: linear-gradient(145deg, #ffffff, #fafaff);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 0 0 4px rgba(88, 86, 214, 0.1),
+        0 4px 12px rgba(88, 86, 214, 0.15);
+    transform: translateY(-1px);
+}
+
+.form_content input:hover {
+    border-color: #b8b7e8;
+    transform: translateY(-1px);
 }
 
 .phone_input_container {
-  background-color: #E5E5E5;
-  border: none !important;
-  border-radius: 50px;
-  height: 32px;
-  display: flex;
-  align-items: center;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 2px solid #e8e8e8 !important;
+    border-radius: 50px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.phone_input_container:hover {
+    border-color: #b8b7e8 !important;
+    transform: translateY(-1px);
+}
+
+.phone_input_container:focus-within {
+    border-color: #5856D6 !important;
+    background: linear-gradient(145deg, #ffffff, #fafaff);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 0 0 4px rgba(88, 86, 214, 0.1),
+        0 4px 12px rgba(88, 86, 214, 0.15);
+    transform: translateY(-1px);
 }
 
 .phone_input {
-  background-color: transparent !important;
-  border: none !important;
-  height: 32px;
-  padding: 0 10px;
-  outline: none;
-  flex: 1;
-  font-size: 13px;
+    background-color: transparent !important;
+    border: none !important;
+    height: 32px;
+    padding: 0 10px;
+    outline: none;
+    flex: 1;
+    font-size: 13px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
 }
 
-/* Optional: Style the flag dropdown */
 .phone_input_container .flag-dropdown {
-  background: transparent;
-  border: none !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .required {
-    color: red;
+    color: #e74c3c;
     font-family: 'Inter', sans-serif;
+    font-weight: bold;
 }
 
 .submit {
-    background-color: #5856D6;
+    background: linear-gradient(135deg, #5856D6 0%, #4845b8 100%);
     color: #fff;
     font-family: 'Inter', sans-serif;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: 100%;
+    max-width: 280px;
+    align-self: center;
     border-radius: 50px;
     cursor: pointer;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(88, 86, 214, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 44px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit:hover::before {
+    left: 100%;
 }
 
 .submit:hover {
-    background-color: #4645AB;
+    background: linear-gradient(135deg, #4845b8 0%, #3730a3 100%);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(88, 86, 214, 0.4),
+        0 0 30px rgba(88, 86, 214, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.submit:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 4px rgba(88, 86, 214, 0.3),
+        0 12px 35px rgba(88, 86, 214, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.submit:active {
+    transform: translateY(-1px) scale(0.98);
 }
 
 .submit:disabled {
-  background-color: #353480;
-  cursor: not-allowed;
-  opacity: 0.8; /* Optional: slightly dim to show it's disabled */
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
 }
 
 .submit_message {
     color: #009933;
     text-align: center;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    margin: 0.5rem 0;
+    animation: messageSlideIn 0.4s ease-out;
+    background: linear-gradient(145deg, #d4edda, #c3e6cb);
+    border: 1px solid #c3e6cb;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.submit_message::before {
+    content: '✓ ';
     font-weight: bold;
 }
 
@@ -140,84 +371,520 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 1;
+    position: relative;
 }
 
 .aiva_button {
     width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+}
+
+.submit:hover .aiva_button {
+    transform: scale(1.1) rotate(10deg);
 }
 
 .checkbox {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     display: flex;
-    align-items: flex-start; /* aligns checkbox with top of text */
-    gap: 10px; /* space between checkbox and label */
-    padding: 20px 0;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    transition: all 0.3s ease;
+    margin: 0.75rem 0;
+}
+
+.checkbox:hover {
+    border-color: #b8b7e8;
+    background: linear-gradient(145deg, #fafaff, #f0f0ff);
 }
 
 .checkbox input {
     cursor: pointer;
-    transform: scale(1.5); /* Increase size */
-    transform-origin: top left; /* Anchor the scale */
+    transform: scale(1.5);
+    transform-origin: top left;
     margin-top: 1px;
+    width: 16px;
+    height: 16px;
+    accent-color: #5856D6;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.checkbox label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #333;
+    cursor: pointer;
+    margin: 0;
 }
 
 .checkbox a {
-    color: #000;
+    color: #5856D6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.checkbox a:hover {
+    color: #4845b8;
+    text-decoration: underline;
 }
 
 .select_wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100%; /* or specific width */
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
 .select_wrapper::after {
-  content: "▼"; /* Unicode arrow */
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #555;
-  font-size: 0.7rem;
+    content: "▼";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+}
+
+.select_wrapper:hover::after {
+    color: #5856D6;
 }
 
 .select_wrapper select {
-  -webkit-appearance: none; /* Safari */
-  -moz-appearance: none;    /* Firefox */
-  appearance: none;         /* Modern browsers */
-  width: 100%;
-  height: 32px;
-  padding: 0 40px 0 20px; /* Right padding for space where the arrow is */
-  border-radius: 50px;
-  border: none;
-  background-color: #E5E5E5;
-  font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 32px;
+    padding: 0 40px 0 20px;
+    border-radius: 50px;
+    border: 2px solid #e8e8e8;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    font-size: 13px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.select_wrapper select:focus {
+    outline: none;
+    border-color: #5856D6;
+    background: linear-gradient(145deg, #ffffff, #fafaff);
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 0 0 4px rgba(88, 86, 214, 0.1),
+        0 4px 12px rgba(88, 86, 214, 0.15);
+    transform: translateY(-1px);
+}
+
+.select_wrapper select:hover {
+    border-color: #b8b7e8;
+    transform: translateY(-1px);
 }
 
 .select_wrapper option {
     background-color: #fff;
+    color: #333;
+    padding: 0.5rem;
     border: none;
 }
 
+/* Responsive Design */
 
-@media (max-width: 767px) {
+/* Large Desktop/Ultra-wide (1920px+) */
+@media (min-width: 1920px) {
     .modal_container {
-        width: 80%;
-        height: 85%;
+        max-width: 700px;
+        max-height: 85vh;
     }
 
     .modal_header {
-        padding-top: 8%;
+        padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+    }
+
+    .modal_form {
+        padding: 1.5rem 2.5rem 2rem 2.5rem;
+    }
+
+    .modal_title {
+        font-size: 32px;
+        padding: 0 20px;
+    }
+
+    .modal_header img {
+        width: 65px;
+        height: 65px;
     }
 
     .modal_header p {
-        text-align: center;
+        font-size: 18px;
     }
 
-    .modal_form {        
-        padding: 20% 8% 0 8%;
+    .form_content label {
+        font-size: 16px;
+        padding: 12px 5px 6px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 42px;
+        font-size: 16px;
+        padding: 0 25px;
+    }
+
+    .phone_input_container {
+        height: 42px;
+    }
+
+    .phone_input {
+        height: 42px;
+        font-size: 16px;
+        padding: 0 15px;
+    }
+
+    .checkbox {
+        padding: 20px;
+        margin: 1rem 0;
+    }
+
+    .checkbox label {
+        font-size: 16px;
+    }
+
+    .checkbox input {
+        transform: scale(1.4);
+    }
+
+    .submit {
+        font-size: 1.125rem;
+        padding: 1.25rem 2rem;
+        min-height: 56px;
+        max-width: 350px;
+    }
+
+    .aiva_button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .submit_message {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .modal_container {
+        max-width: 600px;
+        max-height: 85vh;
+    }
+
+    .modal_header {
+        padding: 2rem 2rem 1.25rem 2rem;
+    }
+
+    .modal_form {
+        padding: 1.25rem 2rem 1.75rem 2rem;
+    }
+
+    .modal_title {
+        font-size: 28px;
+        padding: 0 20px;
+    }
+
+    .modal_header img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .modal_header p {
+        font-size: 16px;
+    }
+
+    .form_content label {
+        font-size: 15px;
+        padding: 10px 5px 5px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 38px;
+        font-size: 15px;
+        padding: 0 22px;
+    }
+
+    .phone_input_container {
+        height: 38px;
+    }
+
+    .phone_input {
+        height: 38px;
+        font-size: 15px;
+        padding: 0 12px;
+    }
+
+    .checkbox {
+        padding: 18px;
+        margin: 0.875rem 0;
+    }
+
+    .checkbox label {
+        font-size: 15px;
+    }
+
+    .checkbox input {
+        transform: scale(1.3);
+    }
+
+    .submit {
+        font-size: 1rem;
+        padding: 1.125rem 1.875rem;
+        min-height: 52px;
+        max-width: 320px;
+    }
+
+    .aiva_button {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Standard Laptop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .modal_container {
+        max-width: 550px;
+        max-height: 85vh;
+    }
+
+    .modal_header {
+        padding: 1.75rem 1.75rem 1.125rem 1.75rem;
+    }
+
+    .modal_form {
+        padding: 1.125rem 1.75rem 1.5rem 1.75rem;
+    }
+
+    .modal_title {
+        font-size: 26px;
+        padding: 0 15px;
+    }
+
+    .modal_header img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .modal_header p {
+        font-size: 15px;
+    }
+
+    .form_content label {
+        font-size: 14px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 36px;
+        font-size: 14px;
+        padding: 0 20px;
+    }
+
+    .phone_input_container {
+        height: 36px;
+    }
+
+    .phone_input {
+        height: 36px;
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .checkbox {
+        padding: 16px;
+    }
+
+    .checkbox label {
+        font-size: 14px;
+    }
+
+    .checkbox input {
+        transform: scale(1.2);
+    }
+
+    .submit {
+        font-size: 0.9375rem;
+        padding: 1rem 1.75rem;
+        min-height: 48px;
+        max-width: 300px;
+    }
+}
+
+/* iPad Pro & Large Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .modal_overlay {
+        padding: 2rem;
+    }
+
+    .modal_container {
+        max-width: 500px;
+        max-height: 85vh;
+    }
+
+    .modal_header {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+    }
+
+    .modal_form {
+        padding: 1rem 1.5rem 1.25rem 1.5rem;
+    }
+
+    .modal_title {
+        font-size: 24px;
+        padding: 0 10px;
+    }
+
+    .modal_header img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .modal_header p {
+        font-size: 14px;
+    }
+
+    .form_content {
+        gap: 0.625rem;
+    }
+
+    .form_content label {
+        font-size: 13px;
+        padding: 8px 5px 4px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 34px;
+        font-size: 13px;
+        padding: 0 18px;
+    }
+
+    .phone_input_container {
+        height: 34px;
+    }
+
+    .phone_input {
+        height: 34px;
+        font-size: 13px;
+        padding: 0 9px;
+    }
+
+    .checkbox {
+        padding: 14px;
+        margin: 0.625rem 0;
+    }
+
+    .checkbox label {
+        font-size: 13px;
+    }
+
+    .checkbox input {
+        transform: scale(1.1);
+    }
+
+    .submit {
+        font-size: 0.875rem;
+        padding: 0.875rem 1.5rem;
+        min-height: 44px;
+        max-width: 280px;
+    }
+
+    .aiva_button {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Standard Tablet (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .modal_overlay {
+        padding: 1.5rem;
+    }
+
+    .modal_container {
+        max-width: 450px;
+        max-height: 80vh;
+    }
+
+    .modal_header {
+        padding: 1.25rem 1.25rem 0.875rem 1.25rem;
+    }
+
+    .modal_form {
+        padding: 0.875rem 1.25rem 1rem 1.25rem;
+    }
+
+    .close_button {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        top: 3%;
+        right: 4%;
+    }
+
+    .modal_title {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+
+    .modal_header img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .modal_header p {
+        font-size: 13px;
+    }
+
+    .form_content {
+        gap: 0.5rem;
+    }
+
+    .form_content label {
+        font-size: 12px;
+        padding: 6px 5px 3px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 32px;
+        font-size: 12px;
+        padding: 0 16px;
+    }
+
+    .phone_input_container {
+        height: 32px;
+    }
+
+    .phone_input {
+        height: 32px;
+        font-size: 12px;
+        padding: 0 8px;
+    }
+
+    .checkbox {
+        padding: 12px;
+        margin: 0.5rem 0;
+    }
+
+    .checkbox label {
+        font-size: 12px;
     }
 
     .checkbox input {
@@ -225,46 +892,471 @@
     }
 
     .submit {
-        width: 80%;
+        font-size: 0.8125rem;
+        padding: 0.8125rem 1.25rem;
+        min-height: 42px;
+        max-width: 260px;
+    }
+
+    .aiva_button {
+        width: 26px;
+        height: 26px;
+    }
+
+    .submit_message {
+        font-size: 0.8125rem;
+        padding: 0.625rem;
     }
 }
 
-@media (min-width: 1900px) {
-    .modal_container {
-        height: 80%;
-        width: 25%;
+/* Large Mobile (429px - 480px) */
+@media (min-width: 429px) and (max-width: 480px) {
+    .modal_overlay {
+        padding: 1rem;
     }
 
-    .modal_content {
-        max-height: 95%;
+    .modal_container {
+        max-width: 400px;
+        max-height: 75vh;
     }
 
     .modal_header {
-        text-align: center;
-        padding-bottom: 6%;
+        padding: 1rem 1rem 0.75rem 1rem;
     }
 
-    .modal_form {        
-        padding: 0 10%;
+    .modal_form {
+        padding: 0.75rem 1rem 0.875rem 1rem;
     }
 
-    .checkbox input {
-        transform: scale(1.2);
-    }
-    
-}
-
-@media (max-width: 428px) {
-    .modal_container {
-        height: 80%;
-    }
-
-    .modal_header img {
-        width: 40px;
+    .close_button {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        top: 2.5%;
+        right: 4%;
     }
 
     .modal_title {
         font-size: 18px;
+        padding: 0 8px;
+    }
+
+    .modal_header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal_header p {
+        font-size: 12px;
+    }
+
+    .form_content {
+        gap: 0.5rem;
+    }
+
+    .form_content label {
+        font-size: 11px;
+        padding: 6px 5px 2px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 30px;
+        font-size: 11px;
+        padding: 0 14px;
+    }
+
+    .phone_input_container {
+        height: 30px;
+    }
+
+    .phone_input {
+        height: 30px;
+        font-size: 11px;
+        padding: 0 7px;
+    }
+
+    .checkbox {
+        padding: 10px;
+        margin: 0.375rem 0;
+    }
+
+    .checkbox label {
+        font-size: 11px;
+    }
+
+    .submit {
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+        min-height: 38px;
+        max-width: 240px;
+    }
+
+    .aiva_button {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Standard Mobile (375px - 428px) */
+@media (min-width: 375px) and (max-width: 428px) {
+    .modal_overlay {
+        padding: 0.875rem;
+    }
+
+    .modal_container {
+        max-width: 360px;
+        max-height: 70vh;
+    }
+
+    .modal_header {
+        padding: 0.875rem 0.875rem 0.625rem 0.875rem;
+    }
+
+    .modal_form {
+        padding: 0.625rem 0.875rem 0.75rem 0.875rem;
+    }
+
+    .close_button {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+        top: 2%;
+        right: 4%;
+    }
+
+    .modal_title {
+        font-size: 16px;
+        padding: 0 5px;
+    }
+
+    .modal_header img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal_header p {
+        font-size: 11px;
+    }
+
+    .form_content {
+        gap: 0.375rem;
+    }
+
+    .form_content label {
+        font-size: 10px;
+        padding: 5px 5px 2px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 28px;
+        font-size: 10px;
+        padding: 0 12px;
+    }
+
+    .phone_input_container {
+        height: 28px;
+    }
+
+    .phone_input {
+        height: 28px;
+        font-size: 10px;
+        padding: 0 6px;
+    }
+
+    .checkbox {
+        padding: 8px;
+        margin: 0.25rem 0;
+    }
+
+    .checkbox label {
+        font-size: 10px;
+    }
+
+    .submit {
+        font-size: 0.6875rem;
+        padding: 0.6875rem 0.875rem;
+        min-height: 36px;
+        max-width: 220px;
+    }
+
+    .aiva_button {
+        width: 22px;
+        height: 22px;
+    }
+
+    .submit_message {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Small Mobile (320px - 374px) */
+@media (max-width: 374px) {
+    .modal_overlay {
+        padding: 0.75rem;
+    }
+
+    .modal_container {
+        max-width: 320px;
+        max-height: 65vh;
+        border-radius: 24px;
+    }
+
+    .modal_header {
+        padding: 0.75rem 0.75rem 0.5rem 0.75rem;
+    }
+
+    .modal_form {
+        padding: 0.5rem 0.75rem 0.625rem 0.75rem;
+    }
+
+    .close_button {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        top: 2%;
+        right: 4%;
+    }
+
+    .modal_title {
+        font-size: 14px;
+        padding: 0;
+        line-height: 1.1;
+    }
+
+    .modal_header img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .modal_header p {
+        font-size: 10px;
+    }
+
+    .form_content {
+        gap: 0.25rem;
+    }
+
+    .form_content label {
+        font-size: 9px;
+        padding: 4px 5px 1px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 26px;
+        font-size: 9px;
+        padding: 0 10px;
+    }
+
+    .phone_input_container {
+        height: 26px;
+    }
+
+    .phone_input {
+        height: 26px;
+        font-size: 9px;
+        padding: 0 5px;
+    }
+
+    .checkbox {
+        padding: 6px;
+        margin: 0.125rem 0;
+        border-radius: 8px;
+    }
+
+    .checkbox label {
+        font-size: 9px;
+        line-height: 1.2;
+    }
+
+    .checkbox input {
+        transform: scale(0.8);
+    }
+
+    .submit {
+        font-size: 0.625rem;
+        padding: 0.625rem 0.75rem;
+        min-height: 32px;
+        max-width: 200px;
+        border-radius: 40px;
+    }
+
+    .aiva_button {
+        width: 20px;
+        height: 20px;
+    }
+
+    .submit_message {
+        font-size: 0.6875rem;
+        padding: 0.375rem;
+    }
+}
+
+/* Landscape orientation for mobile devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    .modal_overlay {
+        padding: 0.5rem;
+    }
+    
+    .modal_container {
+        max-height: 95vh;
+        max-width: 500px;
+    }
+    
+    .modal_header {
+        padding: 0.5rem 1rem 0.375rem 1rem;
+    }
+
+    .modal_form {
+        padding: 0.375rem 1rem 0.5rem 1rem;
+    }
+    
+    .modal_header img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .modal_title {
+        font-size: 16px;
+        margin: 0.25rem 0 0.125rem 0;
+    }
+    
+    .modal_header p {
+        font-size: 11px;
+    }
+    
+    .form_content {
+        gap: 0.25rem;
+    }
+
+    .form_content label {
+        padding: 3px 5px 1px 5px;
+    }
+    
+    .checkbox {
+        padding: 6px;
+        margin: 0.125rem 0;
+    }
+
+    .submit {
+        margin: 0.25rem 0;
+        min-height: 32px;
+    }
+
+    .submit_message {
+        margin: 0.25rem 0;
+        padding: 0.375rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 280px) {
+    .modal_overlay {
+        padding: 0.5rem;
+    }
+
+    .modal_container {
+        max-width: 260px;
+        max-height: 60vh;
+        border-radius: 20px;
+    }
+
+    .modal_header {
+        padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    .modal_form {
+        padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+    }
+
+    .close_button {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+
+    .modal_title {
+        font-size: 12px;
+    }
+
+    .modal_header img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .modal_header p {
+        font-size: 8px;
+    }
+
+    .form_content label {
+        font-size: 8px;
+        padding: 3px 5px 1px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 24px;
+        font-size: 8px;
+        padding: 0 8px;
+    }
+
+    .phone_input_container {
+        height: 24px;
+    }
+
+    .phone_input {
+        height: 24px;
+        font-size: 8px;
+        padding: 0 4px;
+    }
+
+    .checkbox {
+        padding: 4px;
+    }
+
+    .checkbox label {
+        font-size: 8px;
+    }
+
+    .submit {
+        font-size: 0.5rem;
+        padding: 0.5rem 0.625rem;
+        min-height: 28px;
+        max-width: 180px;
+    }
+
+    .aiva_button {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 428px) {
+    .modal_container {
+        height: auto;
+        max-height: 85vh;
+        width: 85%;
+    }
+
+    .close_button {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        top: 3%;
+        right: 5%;
+    }
+
+    .modal_header {
+        padding: 5% 6% 2% 6%;
+    }
+
+    .modal_header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .modal_title {
+        font-size: 18px;
+        padding: 0 10px;
     }
 
     .modal_header p {
@@ -272,18 +1364,38 @@
         margin-bottom: 0px !important;
     }
 
-    .modal_form label {
-        font-size: 12px;
-        padding-bottom: 5px;
+    .modal_form {
+        padding: 0 6%;
     }
 
-    .modal_form input {
-        height: 24px;
+    .form_content {
+        gap: 0.5rem;
+    }
+
+    .form_content label {
         font-size: 12px;
+        padding: 8px 5px 3px 5px;
+    }
+
+    .form_content input, .select_wrapper select {
+        height: 28px;
+        font-size: 12px;
+        padding: 0 15px;
+    }
+
+    .phone_input_container {
+        height: 28px;
+    }
+
+    .phone_input {
+        height: 28px;
+        font-size: 12px;
+        padding: 0 8px;
     }
 
     .checkbox {
-        padding-bottom: 10px;
+        padding: 10px;
+        margin: 0.25rem;
     }
 
     .checkbox label {
@@ -292,23 +1404,47 @@
 
     .checkbox input {
         margin-top: -1px;
+        transform: scale(1);
     }
 
     .submit {
-        width: 70%;
+        width: 85%;
+        font-size: 0.75rem;
+        padding: 0.75rem 1rem;
+        min-height: 40px;
+        margin-bottom: 0.75rem;
+    }
+
+    .aiva_button {
+        width: 24px;
+        height: 24px;
+    }
+
+    .submit_message {
+        font-size: 0.75rem;
+        padding: 0.5rem;
     }
 }
 
 @media (min-width: 1440px) and (max-width: 1900px) {
     .modal_container {
-        height: 85%;
+        height: auto;
+        width: 30%;
+        max-height: 90vh;
     }
+
+    .modal_header {
+        padding: 6% 8% 3% 8%;
+    }
+
     .modal_header img {
-        width: 40px;
+        width: 45px;
+        height: 45px;
     }
 
     .modal_title {
-        font-size: 18px;
+        font-size: 20px;
+        padding: 0 15px;
     }
 
     .modal_header p {
@@ -316,30 +1452,90 @@
         margin-bottom: 0px !important;
     }
 
-    .modal_form label {
+    .form_content label {
         font-size: 13px;
-        padding-bottom: 5px;
+        padding: 8px 5px 4px 5px;
     }
 
-    .modal_form input, .modal_form select {
-        height: 26px;
+    .form_content input, .select_wrapper select {
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .phone_input_container {
+        height: 30px;
+    }
+
+    .phone_input {
+        height: 30px;
         font-size: 13px;
     }
 
     .checkbox {
-        padding-bottom: 10px;
+        padding: 12px;
     }
 
     .checkbox label {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .checkbox input {
         margin-top: -8px;
-        transform: scale(1.3);
+        transform: scale(1.2);
     }
 
     .submit {
         width: 70%;
+        font-size: 0.875rem;
+        padding: 0.875rem 1.5rem;
+    }
+
+    .aiva_button {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+    .modal_container {
+        max-height: 95vh;
+        width: 60%;
+    }
+    
+    .modal_header {
+        padding: 3% 6% 2% 6%;
+    }
+    
+    .modal_header img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal_title {
+        font-size: 18px;
+        margin: 0.5rem 0 0.25rem 0;
+    }
+    
+    .modal_header p {
+        font-size: 12px;
+    }
+    
+    .form_content {
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .form_content label {
+        padding: 5px 5px 2px 5px;
+    }
+    
+    .checkbox {
+        padding: 8px;
+        margin: 0.25rem;
+    }
+
+    .submit {
+        margin-bottom: 0.5rem;
     }
 }
