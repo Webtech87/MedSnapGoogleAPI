@@ -73,7 +73,7 @@ def send_email(request):
         if form.is_valid():
             try:
                 cd = form.cleaned_data
-                new_time = datetime.datetime.now() + datetime.timedelta(hours=1)
+                new_time = datetime.datetime.now()
                 formatted_time = new_time.strftime('%d/%m/%Y %H:%M')
 
                 new_data = [
