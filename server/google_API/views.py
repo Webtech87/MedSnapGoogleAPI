@@ -9,13 +9,13 @@ import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-from .forms import FollowersForm
+from .serializers import FollowersSerializer
 from dotenv import load_dotenv
 import base64
 
 load_dotenv()
 
-SHEET_HEADERS = ['Name', 'Email', 'Telefone', 'Subscrible at']
+SHEET_HEADERS = ['Name', 'Email', 'Specialty', 'Telefone', 'Subscrible at']
 
 def add_to_gs(new_data: list[str]):
     try:
@@ -55,6 +55,12 @@ def add_to_gs(new_data: list[str]):
             wb.insert_row(SHEET_HEADERS, 1)
 
         wb = google_sheet_file.worksheet(today_wb)
+        existing_headers = wb.row_values(1)
+
+        # Compare headers and update if necessary
+        if existing_headers != SHEET_HEADERS:
+            print("Updating header row...")
+            wb.update('1:1', [SHEET_HEADERS])
         wb.append_row(new_data)
         print("Data added to Google Sheet")
     except Exception as sheet_error:
@@ -62,30 +68,27 @@ def add_to_gs(new_data: list[str]):
 
 @csrf_exempt
 def send_email(request):
-    context = {
-        'title': "Follow us",
-        'name': "Boris Isac"
-    }
     if request.method == "POST":
         data = json.loads(request.body)
-        form = FollowersForm(data)
+        serializer = FollowersSerializer(data=data)
 
-        if form.is_valid():
+        if serializer.is_valid():
             try:
-                cd = form.cleaned_data
+                cd = serializer.validated_data
                 new_time = datetime.datetime.now()
                 formatted_time = new_time.strftime('%d/%m/%Y %H:%M')
 
                 new_data = [
                     cd['name'],
                     cd['email'],
+                    cd['specialty'],
                     cd['phone'],
                     formatted_time
                 ]
                 print(cd)
                 send_mail(
                     subject='Subscrible follower',
-                    message=f"+ 1 MedSnap Follower: {cd['name']} {cd['email']} {cd['phone']}",
+                    message=f"+ 1 MedSnap Follower: {cd['name']} {cd['email']} {cd['specialty']} {cd['phone']}",
                     from_email=os.environ.get('MAIL_USERNAME'),
                     recipient_list=[cd['email'], os.environ.get('MAIL_USERNAME'), "boris.isac@webtech87.pt"],
                     fail_silently=False,
@@ -104,8 +107,7 @@ def send_email(request):
                         "error": str(e)
                     }
                 )
-    else:
-        form = FollowersForm()
-    context['form'] = form
+        else:
+            return JsonResponse({'success': False, 'errors': serializer.errors}, status=400)
 
-    return render(request, 'index.html', context)
+    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
