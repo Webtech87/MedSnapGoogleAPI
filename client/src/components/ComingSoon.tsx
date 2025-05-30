@@ -54,9 +54,9 @@ const ComingSoon = () => {
 
 
   const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
-  const [functionalEnabled, setFunctionalEnabled] = useState(false);
-  const [performanceEnabled, setPerformanceEnabled] = useState(false);
-  const [announcementEnabled, setAnnouncementEnabled] = useState(false);
+  const [functionalEnabled, setFunctionalEnabled] = useState(true);
+  const [performanceEnabled, setPerformanceEnabled] = useState(true);
+  const [announcementEnabled, setAnnouncementEnabled] = useState(true);
 
 
   const savePreferences = () => {
@@ -263,7 +263,7 @@ const ComingSoon = () => {
               <div className={styles.cookie_section}>
                 <div className={styles.cookie_header}>
                   <span>Necessary</span>
-                  <button type="button" className={`${styles.plusToggle} ${styles.enabled}`}>
+                  <button type="button" className={styles.enabled_cookies}>
                     ✓
                   </button>
                 </div>
@@ -274,10 +274,10 @@ const ComingSoon = () => {
                   <span>Analytics</span>
                   <button
                     type="button"
-                    className={`${styles.plusToggle} ${analyticsEnabled ? styles.enabled : ''}`}
+                    className={analyticsEnabled ? styles.enabled_cookies : styles.disabled_cookies}
                     onClick={() => setAnalyticsEnabled(!analyticsEnabled)}
                   >
-                    {analyticsEnabled ? '✓' : '+'}
+                    {analyticsEnabled ? '✓' : '×'}
                   </button>
          
                 </div>
@@ -288,10 +288,10 @@ const ComingSoon = () => {
                   <span>Functional</span>
                   <button
                     type="button"
-                    className={`${styles.plusToggle} ${functionalEnabled ? styles.enabled : ''}`}
+                    className={functionalEnabled ? styles.enabled_cookies : styles.disabled_cookies}
                     onClick={() => setFunctionalEnabled(!functionalEnabled)}
                   >
-                    {functionalEnabled ? '✓' : '+'}
+                    {functionalEnabled ? '✓' : '×'}
                   </button>
 
                 </div>
@@ -302,10 +302,10 @@ const ComingSoon = () => {
                   <span>Performance</span>
                   <button
                     type="button"
-                    className={`${styles.plusToggle} ${performanceEnabled ? styles.enabled : ''}`}
+                    className={performanceEnabled ? styles.enabled_cookies : styles.disabled_cookies}
                     onClick={() => setPerformanceEnabled(!performanceEnabled)}
                   >
-                    {performanceEnabled ? '✓' : '+'}
+                    {performanceEnabled ? '✓' : '×'}
                   </button>
 
                 </div>
@@ -316,10 +316,10 @@ const ComingSoon = () => {
                   <span>Announcement</span>
                   <button
                     type="button"
-                    className={`${styles.plusToggle} ${announcementEnabled ? styles.enabled : ''}`}
+                    className={announcementEnabled ? styles.enabled_cookies : styles.disabled_cookies}
                     onClick={() => setAnnouncementEnabled(!announcementEnabled)}
                   >
-                    {announcementEnabled ? '✓' : '+'}
+                    {announcementEnabled ? '✓' : '×'}
                   </button>
 
                 </div>
