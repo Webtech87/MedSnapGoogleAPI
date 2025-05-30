@@ -67,7 +67,7 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
     setSubmitStatus('sending');
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/GS/send_data_form/', formData,
+      const response = await axios.post('https://medsnap-backend.onrender.com/api/v1/GS/send_data_form/', formData,
         {
           headers: {
             'Content-Type': 'application/json'
