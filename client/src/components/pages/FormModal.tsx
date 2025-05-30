@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from '../../styles/pages/FormModal.module.css'
 import aiva_button from '../../assets/animations/avatar-animation-white.json'
 import PhoneInput from 'react-phone-input-2';

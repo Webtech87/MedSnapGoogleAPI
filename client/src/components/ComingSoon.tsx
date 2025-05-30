@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import styles from '../styles/ComingSoon.module.css'
 import bg_img from '../assets/logo-icon-background-accent.png'
 import chat_desktop_en from '../assets/AI-chat-message-div.jpg'
@@ -18,53 +17,7 @@ type ComingSoonProps = {
 
 const ComingSoon: React.FC<ComingSoonProps> = ({ openModal }) => {
   const { t, i18n } = useTranslation();
-  const currentLang = i18n.language
-
-
-  const [showCookieModal, setShowCookieModal] = useState(false);
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(true);
-  const [functionalEnabled, setFunctionalEnabled] = useState(true);
-  const [performanceEnabled, setPerformanceEnabled] = useState(true);
-  const [announcementEnabled, setAnnouncementEnabled] = useState(true);
-
-
-  const savePreferences = () => {
-    const preferences = {
-      accepted: true,
-      analytics: analyticsEnabled,
-      functional: functionalEnabled,
-      performance: performanceEnabled,
-      announcement: announcementEnabled
-    };
-  localStorage.setItem("cookiesAccepted", JSON.stringify(preferences));
-  setShowCookieModal(false);
-  };
-
-  const acceptAll = () => {
-  setAnalyticsEnabled(true);
-  setFunctionalEnabled(true);
-  setPerformanceEnabled(true);
-  setAnnouncementEnabled(true);
-  savePreferences();
-  };
-
-  const rejectAll = () => {
-  setAnalyticsEnabled(false);
-  setFunctionalEnabled(false);
-  setPerformanceEnabled(false);
-  setAnnouncementEnabled(false);
-  savePreferences();
-  };
-
-
-
-  useEffect (() => {
-    const accepted = localStorage.getItem("cookiesAccepted");
-    if (!accepted){
-      setShowCookieModal(true);
-      }
-    }, []);
-    
+  const currentLang = i18n.language    
     
   return (
     <div className={styles.main_container}>
