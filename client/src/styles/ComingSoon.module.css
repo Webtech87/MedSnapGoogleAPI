@@ -240,6 +240,7 @@
     display: none;
 }
 
+/* Original Simple Footer Styles */
 .footer {
     display: flex;
     justify-content: space-around;
@@ -265,11 +266,155 @@
     text-decoration: none;
     margin-right: 70px;
     color: black;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(88, 86, 214, 0.2), 
+        transparent);
+    transition: left 0.3s ease;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        #5856D6, 
+        #7C7AFF, 
+        #5856D6);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .links a:hover {
-    text-decoration: underline;
+    color: #5856D6;
+    background: rgba(88, 86, 214, 0.05);
+    box-shadow: 
+        0 0 15px rgba(88, 86, 214, 0.2),
+        0 0 25px rgba(88, 86, 214, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
 }
+
+.links a:hover::before {
+    left: 100%;
+}
+
+.links a:hover::after {
+    width: 80%;
+}
+
+/* Persistent Cookie Icon Button */
+.cookie_icon_button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5856D6 0%, #4845b8 100%);
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 20px rgba(88, 86, 214, 0.3),
+        0 8px 32px rgba(88, 86, 214, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Breathing animation */
+    animation: cookieBreathing 3s ease-in-out infinite alternate;
+}
+
+.cookie_icon_button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(88, 86, 214, 0.4),
+        rgba(124, 122, 255, 0.5),
+        rgba(88, 86, 214, 0.4),
+        transparent
+    );
+    animation: cookieRotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.cookie_icon_button:hover::before {
+    opacity: 1;
+}
+
+.cookie_icon_button:hover {
+    transform: scale(1.1);
+    box-shadow: 
+        0 6px 25px rgba(88, 86, 214, 0.4),
+        0 12px 40px rgba(88, 86, 214, 0.2);
+}
+
+.cookie_icon_button:active {
+    transform: scale(1.05);
+}
+
+.cookie_icon {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.cookie_icon_button:hover .cookie_icon {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Cookie icon animations */
+@keyframes cookieBreathing {
+    0% {
+        box-shadow: 
+            0 4px 20px rgba(88, 86, 214, 0.3),
+            0 8px 32px rgba(88, 86, 214, 0.15);
+    }
+    100% {
+        box-shadow: 
+            0 6px 25px rgba(88, 86, 214, 0.4),
+            0 12px 40px rgba(88, 86, 214, 0.2);
+    }
+}
+
+@keyframes cookieRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer keyframe animations */
 
 @media (max-width: 767px) {
     .main_container {
@@ -380,6 +525,35 @@
         padding: 20px 0;
         margin: 0;
         text-align: center;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .links a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(88, 86, 214, 0.15), 
+            transparent);
+        transition: left 0.3s ease;
+    }
+
+    .links a:hover {
+        color: #5856D6;
+        background: rgba(88, 86, 214, 0.08);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(88, 86, 214, 0.2);
+    }
+
+    .links a:hover::before {
+        left: 100%;
     }
 
     .links {
@@ -392,6 +566,7 @@
         text-align: center;
         position: static;
     }
+    
     .modal_container_cookie {
         width: 85%;
         height: 70%;
@@ -399,6 +574,49 @@
 
     .form_btns {
         gap: 10px;
+    }
+
+    /* Mobile cookie icon */
+    .cookie_icon_button {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .cookie_icon {
+        font-size: 22px;
+    }
+}
+
+/* Tablet and iPad specific styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footer {
+        padding: 25px 60px;
+    }
+    
+    .links {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .links a {
+        padding: 10px 10px;
+        margin-right: 0;
+    }
+    
+    .copyright {
+        position: static;
+    }
+
+    /* Tablet cookie icon */
+    .cookie_icon_button {
+        width: 55px;
+        height: 55px;
+    }
+
+    .cookie_icon {
+        font-size: 25px;
     }
 }
 
@@ -418,6 +636,10 @@
         position: absolute;
         right: 20%;
         bottom: -10%;
+    }
+    
+    .footer {
+        padding: 20px 150px;
     }
     
     .modal_container {
@@ -445,8 +667,6 @@
         width: 30%;
         height: 70%;
     }
-
-    
 }
 
 @media (max-width: 428px) {
@@ -460,6 +680,18 @@
         font-size: 12px;
         padding: 0 8px;
         white-space: nowrap;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .links a {
+        font-size: 13px;
+    }
+
+    .copyright p {
+        font-size: 12px;
     }
 
     .modal_container {
@@ -509,9 +741,25 @@
         width: 85%;
         height: 78%;
     }
+
+    /* Small mobile cookie icon */
+    .cookie_icon_button {
+        width: 45px;
+        height: 45px;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .cookie_icon {
+        font-size: 20px;
+    }
 }
 
 @media (min-width: 1440px) and (max-width: 1900px) {
+    .footer {
+        padding: 20px 120px;
+    }
+    
     .modal_container {
         height: 85%;
     }
