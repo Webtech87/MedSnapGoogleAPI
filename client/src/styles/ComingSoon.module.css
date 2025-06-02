@@ -438,9 +438,9 @@
     display: block;
     width: 200px;
     padding-bottom: 10%;
-    position: absolute;
-    right: 20%;
-    bottom: 5%;
+    margin-top: 8%;
+    position: relative;
+    left: 50%;
     z-index: -10;
     animation: aivaDesktopReveal 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s forwards;
     opacity: 0;
@@ -469,11 +469,10 @@
 }
 
 .chat_desktop {
-    position: absolute;
-    left: -5%;
+    position: relative;
+    margin-top: 15%;
     width: 400px;
     border-radius: 20px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
     animation: chatDesktopSlide 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s forwards;
     opacity: 0;
     transform: translateX(-100px) rotateY(15deg);
@@ -1369,7 +1368,7 @@
     }
 
     .chat_mobile {
-        display: block;
+        display: none;
         max-width: 90%;
         border-radius: 20px;
         margin: 25px 0;
