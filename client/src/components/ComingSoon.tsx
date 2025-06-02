@@ -9,44 +9,21 @@ import face2 from "../assets/image-avatar-man-smiling.png"
 import face3 from "../assets/image-avatar-white-woman-smiling.png"
 import Lottie from 'lottie-react'
 import animationData from '../assets/animations/medsnap-animation.json'
-import CookiesModal from '../components/pages/CookiesModal'; // Ensure the file exists at this path
 import { useTranslation } from 'react-i18next'
-import { useState, useEffect, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
-const ComingSoon = forwardRef<HTMLDivElement, { openModal: () => void }>(
-  ({ openModal }, ref) => {
+type ComingSoonProps = {
+  openModal: () => void;
+  cookiesAccepted: boolean;
+  onCookieIconClick: () => void;
+};
+
+const ComingSoon = forwardRef<HTMLDivElement, ComingSoonProps>(
+  ({ openModal, cookiesAccepted, onCookieIconClick }, ref) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
   
-  const [showCookieModal, setShowCookieModal] = useState(false);
-  const [cookiesAccepted, setCookiesAccepted] = useState(false);
-
-  // Check if cookies have been handled on component mount
-  useEffect(() => {
-    const cookiePreferences = localStorage.getItem("cookiesAccepted");
-    if (cookiePreferences) {
-      setCookiesAccepted(true);
-    } else {
-      // Show cookie modal on first visit
-      setShowCookieModal(true);
-    }
-  }, []);
-
-  const handleCookieModalClose = () => {
-    setShowCookieModal(false);
-    setCookiesAccepted(true);
-  };
-
-  const handleCookieIconClick = () => {
-    if (ref && typeof ref !== "function" && ref?.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        setShowCookieModal(true);
-      }, 400); // 400ms delay to let scroll happen smoothly
-    } else {
-      setShowCookieModal(true);
-    }
-  };
+ 
 
   return (
     <div className={styles.main_container} ref={ref}>
@@ -94,7 +71,7 @@ const ComingSoon = forwardRef<HTMLDivElement, { openModal: () => void }>(
         {cookiesAccepted && (
           <button 
             className={styles.cookie_icon_button}
-            onClick={handleCookieIconClick}
+            onClick={onCookieIconClick}
             aria-label="Manage cookie preferences"
             title="Cookie Preferences"
           >
@@ -102,11 +79,6 @@ const ComingSoon = forwardRef<HTMLDivElement, { openModal: () => void }>(
               🍪
             </div>
           </button>
-        )}
-
-        {/* Cookie Modal */}
-        {showCookieModal && (
-          <CookiesModal onClose={handleCookieModalClose} />
         )}
     </div>
   )

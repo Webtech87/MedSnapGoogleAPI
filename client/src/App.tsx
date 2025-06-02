@@ -26,20 +26,52 @@ function App () {
 
   const openCookieModal = () => setShowCookieModal(true);
   const closeCookieModal = () => setShowCookieModal(false);
+  const [cookiesAccepted, setCookiesAccepted] = useState(false);
 
+  // Check if cookies have been handled on component mount
   useEffect(() => {
-    const cookiesAccepted = localStorage.getItem('cookiesAccepted');
-    if (!cookiesAccepted) {
+    const cookiePreferences = localStorage.getItem("cookiesAccepted");
+    if (cookiePreferences) {
+      setCookiesAccepted(true);
+    } else {
+      // Show cookie modal on first visit
       openCookieModal();
     }
   }, []);
+
+  const handleCookieModalClose = () => {
+    localStorage.setItem("cookiesAccepted", "true"); // ✅ Set flag
+    setCookiesAccepted(true);
+    closeCookieModal();
+  };
+
+  const handleCookieIconClick = () => {
+    if (comingSoonRef && comingSoonRef.current) {
+      comingSoonRef.current.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        setShowCookieModal(true);
+      }, 400); // 400ms delay to let scroll happen smoothly
+    } else {
+      setShowCookieModal(true);
+    }
+  };
   
   return (
     <Router>
-      {showCookieModal && <CookiesModal onClose={closeCookieModal} />}
+      {showCookieModal && <CookiesModal onClose={handleCookieModalClose} />}
       <Navbar openModal={openModal}/>
       <Routes>
-        <Route path='/' element={<ComingSoon openModal={openModal} ref={comingSoonRef} />} />
+        <Route
+          path="/"
+          element={
+            <ComingSoon
+              openModal={openModal}
+              onCookieIconClick={handleCookieIconClick}
+              cookiesAccepted={cookiesAccepted}
+              ref={comingSoonRef}
+            />
+          }
+        />
         <Route path='/cookies' element={<CookiePolicy />} />         
         <Route path='/terms' element={<TermsofUse />} />         
         <Route path='/privacy' element={<PrivacyPolicy />} />         
