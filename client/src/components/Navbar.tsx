@@ -6,6 +6,7 @@ import gbFlag from '../assets/flag-gb.png'
 import { useTranslation } from "react-i18next";
 import i18n from '../i18n';
 import 'react-phone-input-2/lib/style.css';
+import { useEffect, useState } from 'react'
 
 type NavbarProps = {
   openModal: () => void;
@@ -18,8 +19,20 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
     i18n.changeLanguage(lng);
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
         <span>
             <Link to={'/'} className={styles.logo}>
                 <img src={logo} alt="medsnap-logo" />
@@ -38,6 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           </div>
         </div>
     </nav>
+    
   )
 }
 

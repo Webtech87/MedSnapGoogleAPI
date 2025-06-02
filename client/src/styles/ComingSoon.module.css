@@ -5,6 +5,7 @@
     overflow-x: hidden;
     animation: pageReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     opacity: 0;
+    padding-top: 5vh;
 }
 
 @keyframes pageReveal {
@@ -768,6 +769,7 @@
 @media (max-width: 767px) {
     .main_container {
         position: relative;
+        padding-top: 10vh;
     }
 
     .home {

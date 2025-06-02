@@ -1,9 +1,19 @@
 .navbar {
-    height: 77px;
+    height: 15vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 40px;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 2px 5px rgba(88, 86, 214, 0.2); /* or use border-bottom */
+    /* border-bottom: 1px solid #5856D6; */
 }
 
 .logo img {
@@ -157,6 +167,7 @@
 
 @media (max-width: 767px) {
     .navbar {
+        height: 10vh;
         padding: 5px 15px;
     }
     
