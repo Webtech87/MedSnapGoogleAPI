@@ -6,14 +6,22 @@ import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import FormModal from './components/pages/FormModal';
 import CookiesModal from './components/pages/CookiesModal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App () {
 
   const [showModal, setShowModal] = useState(false);
   const [showCookieModal, setShowCookieModal] = useState(false);
 
-  const openModal = () => setShowModal(true);
+  const comingSoonRef = useRef<HTMLDivElement | null>(null);
+
+  const openModal = () => {
+    setShowModal(true);
+    // Scroll to ComingSoon section
+    if (comingSoonRef.current) {
+      comingSoonRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const closeModal = () => setShowModal(false);
 
   const openCookieModal = () => setShowCookieModal(true);
@@ -31,7 +39,7 @@ function App () {
       {showCookieModal && <CookiesModal onClose={closeCookieModal} />}
       <Navbar openModal={openModal}/>
       <Routes>
-        <Route path='/' element={<ComingSoon openModal={openModal} />} />
+        <Route path='/' element={<ComingSoon openModal={openModal} ref={comingSoonRef} />} />
         <Route path='/cookies' element={<CookiePolicy />} />         
         <Route path='/terms' element={<TermsofUse />} />         
         <Route path='/privacy' element={<PrivacyPolicy />} />         

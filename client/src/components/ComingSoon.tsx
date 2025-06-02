@@ -11,13 +11,10 @@ import Lottie from 'lottie-react'
 import animationData from '../assets/animations/medsnap-animation.json'
 import CookiesModal from '../components/pages/CookiesModal'; // Ensure the file exists at this path
 import { useTranslation } from 'react-i18next'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, forwardRef } from 'react'
 
-type ComingSoonProps = {
-  openModal: () => void;
-};
-
-const ComingSoon: React.FC<ComingSoonProps> = ({ openModal }) => {
+const ComingSoon = forwardRef<HTMLDivElement, { openModal: () => void }>(
+  ({ openModal }, ref) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
   
@@ -41,11 +38,18 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ openModal }) => {
   };
 
   const handleCookieIconClick = () => {
-    setShowCookieModal(true);
+    if (ref && typeof ref !== "function" && ref?.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        setShowCookieModal(true);
+      }, 400); // 400ms delay to let scroll happen smoothly
+    } else {
+      setShowCookieModal(true);
+    }
   };
 
   return (
-    <div className={styles.main_container}>
+    <div className={styles.main_container} ref={ref}>
         <div className={styles.bg}>
             <img src={bg_img} alt="" />
         </div>
@@ -106,6 +110,6 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ openModal }) => {
         )}
     </div>
   )
-}
+});
 
 export default ComingSoon
