@@ -10,20 +10,123 @@
     width: 133px;
 }
 
+/* Enhanced Futuristic Button Styles for Navbar */
 .join_button {
     width: 143px;
     height: 38px;
     border-radius: 999px;
-    background-color: #5856D6;
+    background: #5856D6;
     border: none;
     color: #fff;
     cursor: pointer;
     margin: 0 20px;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+    
+    /* Futuristic animations */
+    animation: navPulseGlow 2s ease-in-out infinite alternate,
+               navSubtleFloat 4s ease-in-out infinite;
+    
+    /* Initial glow effect */
+    box-shadow: 
+        0 0 20px rgba(88, 86, 214, 0.4),
+        0 0 40px rgba(88, 86, 214, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.join_button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: navShimmer 2.5s infinite;
+}
+
+.join_button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: navRipple 3s infinite;
 }
 
 .join_button:hover {
     background-color: #403eaa;
-    box-shadow: 0 0 10px rgba(138, 129, 255, 0.9);
+    box-shadow: 
+        0 0 30px rgba(88, 86, 214, 0.8),
+        0 0 60px rgba(88, 86, 214, 0.4),
+        0 0 90px rgba(88, 86, 214, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Keyframe animations for the navbar button */
+@keyframes navPulseGlow {
+    0% {
+        box-shadow: 
+            0 0 20px rgba(88, 86, 214, 0.4),
+            0 0 40px rgba(88, 86, 214, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 
+            0 0 30px rgba(88, 86, 214, 0.6),
+            0 0 60px rgba(88, 86, 214, 0.3),
+            0 0 90px rgba(88, 86, 214, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+}
+
+@keyframes navSubtleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes navShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes navRipple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    70% {
+        width: 60px;
+        height: 60px;
+        opacity: 0.7;
+    }
+    100% {
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+    }
 }
 
 .buttons {
@@ -56,11 +159,22 @@
     .navbar {
         padding: 5px 15px;
     }
-
+    
+    .join_button {
+        width: 160px;
+        height: 38px;
+        margin: 0 15px;
+        font-size: 13px;
+        padding: 0 8px;
+        white-space: nowrap;
+        animation: navPulseGlow 2s ease-in-out infinite alternate,
+                   navSubtleFloat 4s ease-in-out infinite;
+    }
+    
     .pt_button, .gb_button {
         font-size: 16px;
     }
-
+    
     .pt_button img, .gb_button img {
         display: none;
     }
@@ -70,11 +184,13 @@
     .logo img {
         width: 110px;
     }
-
+    
     .join_button {
-        width: 110px;
-        height: 32px;
-        margin: 0 10px;
+        width: 150px;
+        height: 34px;
+        margin: 0 8px;
         font-size: 12px;
+        padding: 0 6px;
+        white-space: nowrap;
     }
 }
