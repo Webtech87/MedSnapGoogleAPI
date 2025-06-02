@@ -1,13 +1,14 @@
 
 import { useTranslation } from "react-i18next";
 import bg_img from '../../assets/logo-icon-background-accent.png'
+import styles from '../../styles/pages/FooterLinks.module.css'
 
 
 const TermsofUse = () => {
     const { t } = useTranslation();
  
   return (
-    <div className="terms">
+    <div className={styles.terms}>
       <div className="bg">
             <img src={bg_img} alt="" />
       </div>
