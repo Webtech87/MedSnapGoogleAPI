@@ -144,18 +144,10 @@ const FormModal: React.FC<FormModalProps> = ({ onClose }) => {
                         placeholder: t('phone_number'),
                       }}
                       inputClass={styles.phone_input}
-                      buttonStyle={{
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        borderRadius: '50px',
-                        height: '32px',
-                        paddingLeft: '8px',
-                      }}
                       inputStyle={{
                         borderRadius: '50px',
                         fontSize: '13px'
                       }}
-                      containerClass={styles.phone_input_container}
                     />
                 </div>
 
