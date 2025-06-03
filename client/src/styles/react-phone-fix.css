@@ -48,3 +48,9 @@
         0 4px 12px rgba(88, 86, 214, 0.15);
     transform: translateY(-1px);
 }
+
+@media (max-width: 767px) {
+    .react-tel-input .country-list {
+        width: 65vw !important;
+    }    
+}
