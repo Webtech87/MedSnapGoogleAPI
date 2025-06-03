@@ -172,7 +172,7 @@
     }
     
     .join_button {
-        width: 175px;
+        width: 32vw;
         height: 38px;
         margin: 0 15px;
         font-size: 13px;
@@ -182,12 +182,12 @@
                    navSubtleFloat 4s ease-in-out infinite;
     }
     
-    .pt_button, .gb_button {
-        font-size: 16px;
-    }
-    
-    .pt_button img, .gb_button img {
+    .pt_button span, .gb_button span {
         display: none;
+    }
+
+    .pt_button img, .gb_button img {
+        margin-left: 0 !important;
     }
 }
 

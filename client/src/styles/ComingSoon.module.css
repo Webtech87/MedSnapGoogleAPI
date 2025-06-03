@@ -849,7 +849,7 @@
 
     .join_button {
         order: 2;
-        width: 180px;
+        width: 40vw;
         height: 42px;
         font-size: 13px;
         padding: 0 10px;

@@ -42,11 +42,11 @@ const Navbar: React.FC<NavbarProps> = ({ openModal }) => {
           <button className={styles.join_button} onClick={openModal}>{t("join_waitlist")}</button>
           <div className={styles.lang_buttons}>
             <button className={styles.pt_button} onClick={() => changeLanguage('pt')}>
-              PT <img src={ptFlag} alt="PT" style={{width: '25px', height: '25px', marginLeft: '5px'}} />
+              <span>PT </span><img src={ptFlag} alt="PT" style={{width: '25px', height: '25px', marginLeft: '5px'}} />
             </button>
           <div className={styles.separator}></div>
             <button className={styles.gb_button} onClick={() => changeLanguage('en')}>
-              EN <img src={gbFlag} alt="EN" style={{width: '25px', height: '25px', marginLeft: '5px'}} />
+              <span>EN </span><img src={gbFlag} alt="EN" style={{width: '25px', height: '25px', marginLeft: '5px'}} />
             </button>             
           </div>
         </div>
