@@ -124,7 +124,7 @@
 
 .modal_title_cookie {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #1a1a1a;
     margin: 0 0 1rem 0;
@@ -133,7 +133,7 @@
 
 .modal_cookies_p {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     line-height: 1.5;
     color: #666;
     margin: 0;
