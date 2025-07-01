@@ -31,7 +31,8 @@ print(DEBUG)
 ALLOWED_HOSTS = ["localhost", 
                  "127.0.0.1", 
                  "medsnap-backend.onrender.com",
-                 "medsnap.onrender.com"
+                 "medsnap.onrender.com",
+                 "med-snap.com",
                 ]
 
 # Application definition
@@ -62,7 +63,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://medsnap.onrender.com"
+    "https://medsnap.onrender.com",
+    "https://med-snap.com",
 ]
 
 ROOT_URLCONF = 'server.urls'
